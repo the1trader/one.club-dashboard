@@ -1,5 +1,1139 @@
 [
   {
+    "trade_id": "LIVE-004",
+    "date": "2026-11-04",
+    "entry_time": "10:30:02 EST",
+    "exit_time": "10:37:16 EST",
+    "setup": "10:30 Macro High Sweep Short Reversal",
+    "instrument": "US100 (NQ)",
+    "side": "SHORT",
+    "contracts": 8,
+    "entry_price": 28582.0,
+    "stop_loss": 28612.0,
+    "take_profit": 28517.0,
+    "dollar_risk": 480.0,
+    "risk_pct": 1.0,
+    "pre_trade_thesis": {
+      "w1_context": "07:30 Range reference established.",
+      "w2_manipulation": "08:30 had no clean hunt (contained inside range). Delayed energy.",
+      "smt_divergence": "Bearish SMT confirmed: ES printed higher high, NQ formed relative lower high.",
+      "confirmation": "1m Bearish MSS broke below 28,720 with displacement + FVG tap.",
+      "risk_plan": "Dynamic 1.0% risk ($480.00). Structural SL at 28612.0, TP at 28517.0 (2.17R)."
+    },
+    "in_trade_logs": [
+      {
+        "time": "10:30:02 EST",
+        "price": 28582.0,
+        "pts": "0.0",
+        "note": "Executed SHORT order. Stop Loss set structurally at 28612.0, TP at 28517.0."
+      },
+      {
+        "time": "10:30:04 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:06 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:09 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:11 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:13 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:16 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:18 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:20 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:23 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:25 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:27 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:30 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:32 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:35 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:37 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:39 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:42 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:44 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:46 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:49 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:51 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:53 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:56 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:30:58 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:00 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:03 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:05 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:07 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:10 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:12 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:19 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:22 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:24 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:26 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:29 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:31 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:33 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:36 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:38 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:40 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:43 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:45 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:47 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:50 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:52 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:54 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:57 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:31:59 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:02 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:04 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:06 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:09 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:11 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:13 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:16 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:18 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:20 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:23 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:25 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:27 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:30 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:32 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:34 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:37 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:39 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:41 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:44 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:46 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:48 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:51 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:53 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:56 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:32:58 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:00 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:03 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:05 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:07 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:10 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:12 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:14 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:17 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:19 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:21 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:24 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:26 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:28 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:31 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:33 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:36 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:38 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:40 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:43 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:45 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:47 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:50 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:52 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:54 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:57 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:33:59 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:01 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:04 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:06 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:08 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:11 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:13 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:15 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:18 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:20 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:22 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:25 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:27 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:30 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:32 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:34 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:37 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:39 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:41 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:44 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:46 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:48 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:51 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:53 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:55 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:34:58 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:00 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:02 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:05 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:07 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:09 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:12 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:14 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:16 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:19 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:21 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:24 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:26 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:28 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:31 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:33 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:35 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:38 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:40 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:42 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:45 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:47 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:49 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:52 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:54 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:56 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:35:59 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:01 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:03 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:06 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:08 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:10 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:13 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:15 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:18 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:20 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:22 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:25 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:27 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:29 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:32 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:34 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:36 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:39 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:41 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:43 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:46 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:48 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:50 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:53 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:55 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:36:57 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:00 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:02 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:05 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:07 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:09 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:12 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      },
+      {
+        "time": "10:37:14 EST",
+        "price": 28582.0,
+        "pts": "+0.0",
+        "note": "Managing active position. Live Points: +0.0 pts | P&L: $+0.00."
+      }
+    ],
+    "exit_review": {
+      "exit_price": 28612.0,
+      "points": -30.0,
+      "pnl": -480.0,
+      "rr_achieved": -1.0,
+      "status": "LOSS",
+      "grade": "B",
+      "reason": "STOP_LOSS_HIT",
+      "what_went_well": "Honored the predetermined structural stop loss (-30.0 pts / $-480.00) immediately without widening stops or revenge trading.",
+      "what_to_improve": "Verify whether SMT divergence or 1m MSS displacement had proper volume confirmation prior to entry.",
+      "key_lesson": "Losses are standard overhead in trading. Taking 1.0% dynamic risk ensures mathematical longevity and survivability."
+    }
+  },
+  {
     "trade_id": "LIVE-003",
     "date": "2026-11-03",
     "entry_time": "13:13:14 EST",

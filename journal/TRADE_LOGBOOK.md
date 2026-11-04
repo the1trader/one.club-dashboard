@@ -1,7 +1,212 @@
 # 1trade Professional Master Logbook & Trade Journal
-**Last Updated:** 2026-11-04 09:57:00 EST
+**Last Updated:** 2026-11-04 10:37:16 EST
 
 > *'You do not rise to the level of your goals, you fall to the level of your systems.'* — James Clear
+
+---
+
+## [LIVE-004] 2026-11-04 — 10:30 Macro High Sweep Short Reversal
+**Side:** 🔴 SHORT | **Status:** ❌ LOSS ($-480.00 / -30.0 pts) | **Risk:** $480.00 (1.0%)
+**Entry:** `28582.0` (10:30:02 EST) | **SL:** `28612.0` | **TP:** `28517.0`
+
+### 🧠 Pre-Trade Thesis & Confirmations
+- **W1 Context:** 07:30 Range reference established.
+- **W2 Manipulation:** 08:30 had no clean hunt (contained inside range). Delayed energy.
+- **Smt Divergence:** Bearish SMT confirmed: ES printed higher high, NQ formed relative lower high.
+- **Confirmation:** 1m Bearish MSS broke below 28,720 with displacement + FVG tap.
+- **Risk Plan:** Dynamic 1.0% risk ($480.00). Structural SL at 28612.0, TP at 28517.0 (2.17R).
+
+### ⏱️ In-Trade Management Log
+- `[10:30:02 EST]` (Price: `28582.0`, 0.0 pts) — Executed SHORT order. Stop Loss set structurally at 28612.0, TP at 28517.0.
+- `[10:30:04 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:06 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:09 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:11 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:13 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:16 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:18 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:20 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:23 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:25 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:27 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:30 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:32 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:35 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:37 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:39 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:42 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:44 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:46 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:49 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:51 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:53 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:56 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:30:58 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:00 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:03 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:05 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:07 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:10 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:12 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:19 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:22 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:24 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:26 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:29 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:31 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:33 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:36 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:38 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:40 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:43 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:45 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:47 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:50 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:52 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:54 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:57 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:31:59 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:02 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:04 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:06 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:09 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:11 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:13 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:16 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:18 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:20 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:23 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:25 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:27 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:30 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:32 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:34 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:37 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:39 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:41 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:44 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:46 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:48 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:51 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:53 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:56 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:32:58 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:00 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:03 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:05 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:07 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:10 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:12 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:14 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:17 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:19 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:21 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:24 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:26 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:28 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:31 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:33 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:36 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:38 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:40 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:43 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:45 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:47 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:50 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:52 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:54 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:57 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:33:59 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:01 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:04 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:06 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:08 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:11 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:13 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:15 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:18 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:20 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:22 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:25 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:27 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:30 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:32 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:34 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:37 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:39 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:41 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:44 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:46 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:48 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:51 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:53 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:55 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:34:58 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:00 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:02 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:05 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:07 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:09 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:12 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:14 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:16 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:19 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:21 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:24 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:26 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:28 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:31 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:33 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:35 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:38 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:40 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:42 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:45 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:47 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:49 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:52 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:54 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:56 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:35:59 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:01 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:03 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:06 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:08 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:10 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:13 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:15 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:18 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:20 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:22 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:25 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:27 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:29 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:32 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:34 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:36 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:39 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:41 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:43 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:46 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:48 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:50 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:53 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:55 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:36:57 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:00 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:02 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:05 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:07 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:09 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:12 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+- `[10:37:14 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
+
+### 📊 Post-Trade Review & Retrospective
+- **Outcome & Realized P&L:** LOSS (-30.0 pts | **$-480.00**) | Realized R:R: **-1.0R**
+- **Execution Grade:** `B`
+- **What Went Well:** Honored the predetermined structural stop loss (-30.0 pts / $-480.00) immediately without widening stops or revenge trading.
+- **What to Improve:** Verify whether SMT divergence or 1m MSS displacement had proper volume confirmation prior to entry.
+- **💡 Key Lesson:** Losses are standard overhead in trading. Taking 1.0% dynamic risk ensures mathematical longevity and survivability.
 
 ---
 
