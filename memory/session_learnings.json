@@ -1,0 +1,56 @@
+[
+  {
+    "date": "2026-11-03",
+    "market_regime": "Choppy Pre-Market / Delayed 10:30 Macro Liquidity Trap",
+    "parameters": {
+      "w1_0730_range": {
+        "high": 28620.0,
+        "low": 28540.0,
+        "width": 80.0,
+        "type": "Balanced Range"
+      },
+      "w2_0830_hunt": {
+        "occurred": false,
+        "type": "Choppy Retest / No Clean Sweep",
+        "notes": "No true liquidity hunt at 8:30; chop continued with no direction."
+      },
+      "w3_0930_open": {
+        "behavior": "Two-way chop into discount",
+        "expansion_clean": false
+      },
+      "w4_1030_macro": {
+        "behavior": "Ran all session highs to 28,760, trapped breakout buyers, then collapsed 344 pts to 28,416."
+      }
+    },
+    "agent_decision": "Initial 09:30 long bias was vulnerable to chop. The true high-probability move was the 10:30 macro exhaustion reversal after all highs were purged.",
+    "actual_outcome": "Delayed sweep at 10:30 open took out all highs, followed by a massive 340+ point crash.",
+    "lesson_learned": "When 07:30 is a range and NO liquidity hunt occurs on the 08:30 open (choppy, no clear direction), expect smart money to delay the purge until 10:30. At 10:30, it takes out all highs, traps late buyers, and reverses aggressively downward."
+  },
+  {
+    "date": "2026-10-30",
+    "market_regime": "Tight 08:30 Compression -> Explosive 09:30 Judas Flush",
+    "parameters": {
+      "w1_0730_range": {
+        "high": 28690.0,
+        "low": 28630.0,
+        "width": 60.0,
+        "type": "Tight Range"
+      },
+      "w2_0830_hunt": {
+        "occurred": false,
+        "type": "Contained Inside 07:30 Range",
+        "notes": "Energy stored inside range."
+      },
+      "w3_0930_open": {
+        "behavior": "Violent Judas dump to 28,470 followed by V-reversal",
+        "expansion_clean": true
+      },
+      "w4_1030_macro": {
+        "behavior": "Complete delivery into 07:30 high (28,690) by 10:15, then stalled."
+      }
+    },
+    "agent_decision": "Do not enter breakout at 09:30. Wait for Judas flush of range low, then buy reversal.",
+    "actual_outcome": "Judas dump swept lows, then rallied 220 points straight into 07:30 high.",
+    "lesson_learned": "When 08:30 is completely compressed inside 07:30 range, 09:30 open will almost always produce a violent fakeout (Judas) purging one side before reversing to the other."
+  }
+]

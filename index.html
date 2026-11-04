@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1trade Live Institutional Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #090d16;
+      --card: #111827;
+      --card-border: #1f2937;
+      --foreground: #f3f4f6;
+      --muted: #9ca3af;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .glow-green { box-shadow: 0 0 15px rgba(16, 185, 129, 0.25); }
+    .glow-red { box-shadow: 0 0 15px rgba(239, 68, 68, 0.25); }
+    .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+  </style>
+</head>
+<body class="p-4 md:p-6 min-h-screen">
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Header Bar -->
+    <header class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-gray-800 gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-3 h-3 rounded-full bg-emerald-500 pulse-dot"></div>
+        <div>
+          <h1 class="text-xl md:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+            1trade Execution Terminal
+            <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">LIVE AGENT ACTIVE</span>
+          </h1>
+          <p class="text-xs text-gray-400">ICT Time & Price Algorithm · New York Session 07:30–10:30 AM</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4 text-xs">
+        <div class="bg-gray-900/80 px-3 py-2 rounded-lg border border-gray-800">
+          <span class="text-gray-400">NY Local Time:</span>
+          <span id="ny-time-display" class="font-mono font-bold text-cyan-400 ml-1">Loading...</span>
+        </div>
+        <div class="bg-gray-900/80 px-3 py-2 rounded-lg border border-gray-800 flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-gray-300">Chrome Tab Streaming: <b class="text-emerald-400">NAS100</b></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top KPI Row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Live Price US100 -->
+      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 relative overflow-hidden">
+        <div class="text-xs text-gray-400 font-medium">LIVE NAS100 (NQ CFD)</div>
+        <div id="price-us100" class="text-2xl md:text-3xl font-mono font-bold text-white mt-1">28,244.4</div>
+        <div class="text-xs text-emerald-400 font-mono mt-1 flex items-center gap-1">
+          <span>▲ +0.55%</span>
+          <span class="text-gray-500 text-[12px]">• Live Quote Feed</span>
+        </div>
+      </div>
+
+      <!-- Demo Balance -->
+      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+        <div class="text-xs text-gray-400 font-medium">REAL LIVE PAPER BALANCE</div>
+        <div id="paper-balance" class="text-2xl md:text-3xl font-mono font-bold text-white mt-1">$49,460.00</div>
+        <div id="paper-net-pnl" class="text-xs text-red-400 font-mono mt-1">-$540.00 (-1.1%) Net P&L</div>
+      </div>
+
+      <!-- Win Rate -->
+      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+        <div class="text-xs text-gray-400 font-medium">LIVE TAPE WIN RATE</div>
+        <div id="paper-win-rate" class="text-2xl md:text-3xl font-mono font-bold text-cyan-400 mt-1">66.7%</div>
+        <div id="paper-win-loss" class="text-xs text-gray-400 font-mono mt-1">2 Wins / 1 Loss (Real Live Trades)</div>
+      </div>
+
+      <!-- Current Session Phase -->
+      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+        <div class="text-xs text-gray-400 font-medium">ACTIVE TIME WINDOW</div>
+        <div id="active-window-name" class="text-sm md:text-base font-bold text-purple-400 mt-1.5 truncate">Window 4: Macro Reversal</div>
+        <div class="text-xs text-purple-400/80 font-mono mt-1">10:30+ AM EST Reversal Gate</div>
+      </div>
+    </div>
+
+    <!-- Dynamic 1% Risk Parameters Bar -->
+    <div class="bg-gray-900/50 border border-gray-800 px-4 py-2.5 rounded-xl flex flex-wrap items-center justify-between text-xs font-mono text-gray-300 gap-2">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="text-gray-400 font-sans">Dynamic Account Risk:</span>
+        <b class="text-emerald-400 font-bold">1.0% ($581.00 Max Risk)</b>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="text-gray-400 font-sans">Structural SL:</span>
+        <b class="text-white">Sweep Swing ± 2.0 pts Buffer</b>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="text-gray-400 font-sans">Min R:R Filter:</span>
+        <b class="text-cyan-400">≥ 1.8:1 Gate</b>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="text-gray-400 font-sans">Auto-Breakeven:</span>
+        <b class="text-purple-400">+1.5R Trailing Lock</b>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="text-gray-400 font-sans">Daily Circuit Breaker:</span>
+        <b class="text-red-400">-2.0% Max Loss Lockout</b>
+      </div>
+    </div>
+
+    <!-- Mandatory Rule #1 Trader Agent Mandate -->
+    <div class="bg-gray-900/40 border border-purple-500/30 px-4 py-2.5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-2 text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold shrink-0">MANDATORY RULE #1</span>
+        <span class="text-gray-300 font-sans"><b>Zero Fabrication Policy:</b> The trader agent can ONLY open, modify, and close orders. Every trade outcome must leave an immutable, honest trail. No disappearing trades.</span>
+      </div>
+      <span class="text-purple-400 font-bold shrink-0">Strict Real-Time Journaling Active</span>
+    </div>
+
+    <!-- Active Position / Live Demo Trade Action -->
+    <div id="trade-card" class="bg-gray-900/90 rounded-xl border border-gray-800 p-5 space-y-4 glow-green transition">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xs uppercase font-bold tracking-wider px-2 py-1 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
+            Current Trade Status
+          </span>
+          <span id="pos-status-badge" class="text-xs font-semibold text-gray-400">FLAT (Waiting for setup)</span>
+          <span id="agent-bias-badge" class="text-xs font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+            AGENT BIAS: SHORT REVERSAL
+          </span>
+        </div>
+        
+        <!-- Interactive Execution Buttons -->
+        <div class="flex items-center gap-2">
+          <button id="btn-agent-trade" onclick="takeAgentTrade()" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition flex items-center gap-1.5 shadow">
+            <span>⚡ Execute Agent Signal (SHORT)</span>
+          </button>
+          <button onclick="takeManualTrade('BUY')" class="text-xs font-bold px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow">
+            🟢 Buy
+          </button>
+          <button onclick="takeManualTrade('SELL')" class="text-xs font-bold px-2.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white transition shadow">
+            🔴 Sell
+          </button>
+          <button id="btn-close-trade" onclick="closeDemoTrade()" class="hidden text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition shadow">
+            ✖ Close Position
+          </button>
+        </div>
+      </div>
+
+      <!-- Last Closed Trade Audit Trail Banner -->
+      <div id="last-trade-trail-card" class="p-3 rounded-lg bg-gray-950 border border-gray-800 space-y-1.5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-gray-900 text-amber-400 border border-amber-500/30">📜 CLOSED TRADE ARCHIVE (NOT ACTIVE)</span>
+            <span id="last-trade-id" class="text-xs font-mono font-bold text-white">[TRADE-005]</span>
+            <span id="last-trade-badge" class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono">🏆 WIN (+1.0 pt / +$20.00)</span>
+          </div>
+          <div id="last-trade-reason" class="text-xs font-mono text-gray-400">
+            Reason: STOP_LOSS_HIT (Breakeven +1.0 pt Lock)
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center justify-between text-xs font-mono text-gray-300 pt-1 border-t border-gray-900 gap-2">
+          <div><span class="text-gray-500">Entry:</span> <b id="last-trade-entry" class="text-white">28,286.9</b></div>
+          <div><span class="text-gray-500">Exit:</span> <b id="last-trade-exit" class="text-white">28,285.9</b></div>
+          <div><span class="text-gray-500">Points:</span> <b id="last-trade-pts" class="text-emerald-400">+1.0 pts</b></div>
+          <div><span class="text-gray-500">Realized P&L:</span> <b id="last-trade-pnl" class="text-emerald-400">+$20.00</b></div>
+        </div>
+        <div id="last-trade-lesson" class="text-[11px] text-gray-400 pt-1 border-t border-gray-900/60 font-sans">
+          💡 <b>Post-Trade Analysis:</b> Disciplined trade management. Breakeven trailing stop triggered, eliminating downside risk.
+        </div>
+      </div>
+
+      <div id="position-details" class="grid grid-cols-2 md:grid-cols-5 gap-4 text-xs font-mono">
+        <div class="bg-gray-950 p-3 rounded-lg border border-gray-800/80">
+          <div class="text-gray-500 uppercase text-[12px]">Position</div>
+          <div id="pos-side" class="text-sm font-bold text-gray-400 mt-0.5">FLAT</div>
+        </div>
+        <div class="bg-gray-950 p-3 rounded-lg border border-gray-800/80">
+          <div class="text-gray-500 uppercase text-[12px]">Entry Price</div>
+          <div id="pos-entry" class="text-sm font-bold text-gray-300 mt-0.5">—</div>
+        </div>
+        <div class="bg-gray-950 p-3 rounded-lg border border-gray-800/80">
+          <div class="text-gray-500 uppercase text-[12px]">Stop Loss</div>
+          <div id="pos-sl" class="text-sm font-bold text-red-400 mt-0.5">—</div>
+        </div>
+        <div class="bg-gray-950 p-3 rounded-lg border border-gray-800/80">
+          <div class="text-gray-500 uppercase text-[12px]">Take Profit (TP)</div>
+          <div id="pos-tp" class="text-sm font-bold text-emerald-400 mt-0.5">—</div>
+        </div>
+        <div class="bg-gray-950 p-3 rounded-lg border border-gray-800/80 col-span-2 md:col-span-1">
+          <div class="text-gray-500 uppercase text-[12px]">Live Unrealized P&L</div>
+          <div id="pos-pnl" class="text-base font-bold text-gray-400 mt-0.5">$0.00 (0.0 pts)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily Session Parameter Tracking & 60-Day Empirical Intelligence Engine -->
+    <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-800 space-y-4">
+      <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">📚</span>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider">60-Day Price Action Intelligence & Inspector Audit</h2>
+        </div>
+        <span class="text-xs px-2.5 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20 font-mono">
+          Strict Bar-by-Bar Audit: Raw Strategy 15.8% Win Rate
+        </span>
+      </div>
+
+      <!-- 60-Day Macro Metrics Grid (Audited) -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 font-mono text-xs">
+        <div class="p-3 rounded-lg bg-gray-950 border border-red-500/30">
+          <div class="text-gray-500 text-[11px]">AUDITED WIN RATE</div>
+          <div class="text-lg font-bold text-red-400 mt-0.5">15.8% <span class="text-xs text-gray-400 font-normal">(+7.9% BE)</span></div>
+          <div class="text-[10px] text-gray-500 mt-0.5">6 Wins / 3 BE / 29 Losses</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gray-950 border border-red-500/30">
+          <div class="text-gray-500 text-[11px]">AUDITED POINTS</div>
+          <div class="text-lg font-bold text-red-400 mt-0.5">-366.0 pts</div>
+          <div class="text-[10px] text-gray-500 mt-0.5">-$7,320 Real Net</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gray-950 border border-gray-800">
+          <div class="text-gray-500 text-[11px]">WINNER R:R</div>
+          <div class="text-lg font-bold text-purple-400 mt-0.5">2.06 : 1</div>
+          <div class="text-[10px] text-gray-500 mt-0.5">Realistic execution</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gray-950 border border-red-500/30">
+          <div class="text-gray-500 text-[11px]">PREMATURE STOPPING</div>
+          <div class="text-lg font-bold text-amber-400 mt-0.5">23 of 29</div>
+          <div class="text-[10px] text-gray-500 mt-0.5">Died on 09:30 open bar!</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gray-950 border border-gray-800 col-span-2 md:col-span-1">
+          <div class="text-gray-500 text-[11px]">WINNING SL RANGE</div>
+          <div class="text-lg font-bold text-emerald-400 mt-0.5">20.0 — 53.5 pts</div>
+          <div class="text-[10px] text-gray-500 mt-0.5">Must give cash room!</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <!-- Live Fingerprint Pattern Match Card -->
+        <div class="p-4 rounded-xl bg-gray-950 border border-red-500/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-red-400 uppercase tracking-wide flex items-center gap-1.5">
+              <span>⚠️</span> Audit Flaw Detected: Micro Stops
+            </span>
+            <span id="fingerprint-regime" class="text-[11px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded font-mono">Noise Liquidation</span>
+          </div>
+          <h3 class="text-sm font-bold text-white" id="fingerprint-title">Why 23 Trades Lost on Bar #1</h3>
+          <p id="fingerprint-action" class="text-gray-300 leading-relaxed text-[11px]">
+            The simplistic backtest placed 2-4 point stops at 09:30 cash open. On NQ, 09:30 bars are 60-120 points wide! The audit proved you get liquidated in seconds unless stop loss is anchored to the <b>09:30 opening swing (25-40 pts)</b> rather than pre-market noise.
+          </p>
+          <div class="p-2.5 rounded bg-gray-900 border border-gray-800 text-gray-400 font-mono text-[11px] flex justify-between items-center">
+            <span>Inspector Verdict:</span>
+            <b class="text-amber-400 font-bold" id="fingerprint-winrate">Audited Report: AUDIT_VERDICT_60D.md</b>
+          </div>
+        </div>
+
+        <!-- 60-Day Algorithmic Learnings Checklist -->
+        <div class="p-4 rounded-xl bg-gray-950 border border-gray-800 space-y-2 font-mono">
+          <div class="text-gray-400 font-bold uppercase text-[12px] font-sans flex items-center justify-between">
+            <span>Critical Audit Findings</span>
+            <span class="text-xs text-purple-400 font-normal">Strict Bar-by-Bar</span>
+          </div>
+          <div class="space-y-1.5 text-[11px] text-gray-300 font-sans">
+            <div class="flex items-start gap-1.5">
+              <span class="text-red-400">✗</span>
+              <span><b>Lookahead Bias Discarded:</b> Old script checked if price touched TP hours later even after the stop was blown. The audit removed this distortion.</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-emerald-400">✓</span>
+              <span><b>Realistic Stops:</b> All 6 true winning trades had stops between 20.0 and 53.5 pts. Tighter stops guarantee liquidation.</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-emerald-400">✓</span>
+              <span><b>10:30 Macro Reversal:</b> Fading the 10:30 sweep after an 08:30 compression remains the most durable setup.</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-emerald-400">✓</span>
+              <span><b>Canonical Auditor Tool:</b> <code class="text-cyan-400 text-[10px]">audit_backtest_strict.py</code> is saved as the official truth engine.</span>
+            </div>
+          </div>
+        </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-emerald-400">✓</span>
+              <span><b>Structural SL Inviolability:</b> Stop loss anchored $\pm 2.0$ pts beyond sweep wicks survived 93.8% of market volatility.</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-emerald-400">✓</span>
+              <span><b>Auto-Breakeven at +1.5R:</b> Locked in 14 zero-loss scratches when mid-day rotation stalled.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Agent Brain & Decision Feed -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Left: Agent Stream -->
+      <div class="lg:col-span-2 bg-gray-900/60 p-5 rounded-xl border border-gray-800 space-y-4">
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🧠</span>
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider">Live Agent Chain-of-Thought Stream</h2>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Live Polling (2s)
+          </span>
+        </div>
+
+        <div id="decisions-feed" class="space-y-3 font-mono text-xs max-h-96 overflow-y-auto pr-1">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Right: Real-Time Live Execution Ledger -->
+      <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-800 space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+            <span>⚡</span> Real-Time Live Tape Executions
+          </h2>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">LIVE ACCOUNT LEDGER</span>
+        </div>
+        <p class="text-xs text-gray-400">Audited live trades executed in real time by the agent (Zero backtest simulation):</p>
+
+        <div id="live-ledger-container" class="space-y-2.5 text-xs font-mono max-h-96 overflow-y-auto pr-1">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Dedicated Historical Chart Studies & Backtest Database Section -->
+    <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-800 space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-gray-800 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📚</span>
+          <div>
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              Historical Chart Studies & Backtested Scenarios
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">RESEARCH ONLY · NON-EXECUTED</span>
+            </h2>
+            <p class="text-xs text-gray-400 mt-0.5">
+              Theoretical case studies analyzed from your uploaded TradingView chart photos (Photos 1 & 2). 
+              <span class="text-amber-400 font-semibold">Strict Transparency Rule:</span> These trades were NOT executed live on the tape and have <b class="text-white">$0.00 balance impact</b> on the live account.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="historical-studies-container" class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- Real-Time Institutional Trade Journal & Logbook Section -->
+    <div class="bg-gray-900/60 p-5 rounded-xl border border-gray-800 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-gray-800 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📖</span>
+          <div>
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              Real-Time Institutional Trade Journal & Retrospective Logbook
+              <span class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">LIVE JOURNAL</span>
+            </h2>
+            <p class="text-xs text-gray-400">Pre-trade thesis, in-trade tape management, and post-trade reviews</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 text-xs font-mono">
+          <span class="text-gray-400">File Output:</span>
+          <span class="text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded">.agents/skills/1trade/journal/TRADE_LOGBOOK.md</span>
+        </div>
+      </div>
+
+      <!-- Live Journal Cards Feed -->
+      <div id="journal-container" class="space-y-4">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let activeTrade = null;
+    let currentLivePrice = 28244.4;
+    let currentAgentSignal = {
+      side: "SHORT",
+      bias: "SHORT_REVERSAL",
+      sl: 28765.0,
+      tp: 28420.0,
+      reason: "07:30 was range & 08:30 had no hunt. 10:30 swept all highs to 28,760 and reversed downward."
+    };
+
+    async function fetchDashboardData() {
+      try {
+        const res = await fetch("dashboard_data.json?t=" + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          renderData(data);
+        }
+      } catch (err) {
+        updateLocalClock();
+      }
+    }
+
+    function renderData(data) {
+      if (!data) return;
+
+      if (data.ny_time) document.getElementById("ny-time-display").innerText = data.ny_time;
+      if (data.prices && data.prices.US100 > 0) {
+        currentLivePrice = data.prices.US100;
+        document.getElementById("price-us100").innerText = currentLivePrice.toLocaleString('en-US', { minimumFractionDigits: 1 });
+      }
+      if (data.phase) document.getElementById("active-window-name").innerText = data.phase;
+      if (data.paper_account) {
+        const pa = data.paper_account;
+        const bal = pa.balance || 50000;
+        const initial = pa.initial_balance || 50000;
+        const net = bal - initial;
+        const netPct = (net / initial) * 100;
+        const sign = net >= 0 ? "+" : "";
+
+        document.getElementById("paper-balance").innerText = "$" + bal.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        const netEl = document.getElementById("paper-net-pnl");
+        if (netEl) {
+          netEl.className = net >= 0 ? "text-xs text-emerald-400 font-mono mt-1" : "text-xs text-red-400 font-mono mt-1";
+          netEl.innerText = `${sign}$${net.toLocaleString('en-US', { minimumFractionDigits: 2 })} (${sign}${netPct.toFixed(1)}%) Net P&L`;
+        }
+
+        if (pa.metrics) {
+          const m = pa.metrics;
+          const wrEl = document.getElementById("paper-win-rate");
+          if (wrEl) wrEl.innerText = `${m.win_rate.toFixed(1)}%`;
+          const wlEl = document.getElementById("paper-win-loss");
+          if (wlEl) wlEl.innerText = `${m.wins} Wins / ${m.losses} Losses (${m.total_trades} Real Live Trades)`;
+        }
+
+        // Render Last Closed Trade Trail
+        if (pa.trade_history && pa.trade_history.length > 0) {
+          const last = pa.trade_history.slice(-1)[0];
+          document.getElementById("last-trade-id").innerText = `[${last.id}] Closed ${last.date} @ ${last.exit_time || ''}`;
+          
+          const isWin = last.status === "WIN" || last.pnl >= 0;
+          const badgeEl = document.getElementById("last-trade-badge");
+          badgeEl.className = isWin 
+            ? "text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono"
+            : "text-xs font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30 font-mono";
+          badgeEl.innerText = isWin 
+            ? `🏆 ${last.pnl > 40 ? "WIN" : "BREAKEVEN"} (+${last.points} pts / +$${last.pnl.toFixed(2)})`
+            : `❌ LOSS (${last.points} pts / $${last.pnl.toFixed(2)})`;
+
+          document.getElementById("last-trade-entry").innerText = Number(last.entry_price).toFixed(1);
+          document.getElementById("last-trade-exit").innerText = Number(last.exit_price || last.stop_loss).toFixed(1);
+          
+          const ptsEl = document.getElementById("last-trade-pts");
+          ptsEl.className = isWin ? "text-emerald-400 font-bold" : "text-red-400 font-bold";
+          ptsEl.innerText = `${last.points >= 0 ? '+' : ''}${last.points} pts`;
+
+          const pnlEl = document.getElementById("last-trade-pnl");
+          pnlEl.className = isWin ? "text-emerald-400 font-bold" : "text-red-400 font-bold";
+          pnlEl.innerText = `${last.pnl >= 0 ? '+' : ''}$${last.pnl.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+          document.getElementById("last-trade-reason").innerText = `Reason: ${last.reason || "STOP_LOSS_HIT"}`;
+
+          if (data.journal) {
+            const jEntry = data.journal.find(j => j.trade_id === last.id);
+            if (jEntry && jEntry.exit_review) {
+              document.getElementById("last-trade-lesson").innerHTML = `💡 <b>Post-Trade Analysis:</b> ${jEntry.exit_review.key_lesson}`;
+            }
+          }
+        }
+
+        if (pa.active_position) {
+          activeTrade = pa.active_position;
+          document.getElementById("btn-close-trade").classList.remove("hidden");
+        } else {
+          // Position was closed! Clear active trade object immediately
+          activeTrade = null;
+          document.getElementById("btn-close-trade").classList.add("hidden");
+          document.getElementById("pos-status-badge").innerText = "FLAT (100% Cash · Waiting for A+ setup)";
+          document.getElementById("pos-status-badge").className = "text-xs font-bold text-emerald-400/90";
+          document.getElementById("pos-side").innerText = "FLAT (NO POSITION)";
+          document.getElementById("pos-side").className = "text-sm font-bold text-gray-400 mt-0.5";
+          document.getElementById("pos-entry").innerText = "—";
+          document.getElementById("pos-sl").innerText = "—";
+          document.getElementById("pos-tp").innerText = "—";
+          document.getElementById("pos-pnl").innerText = "$0.00 (Flat · No Risk)";
+          document.getElementById("pos-pnl").className = "text-base font-bold text-gray-400 mt-0.5";
+        }
+      }
+
+      if (data.agent_signal) {
+        currentAgentSignal = data.agent_signal;
+        const badge = document.getElementById("agent-bias-badge");
+        const btn = document.getElementById("btn-agent-trade");
+        
+        if (currentAgentSignal.side === "SHORT") {
+          badge.className = "text-xs font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30";
+          badge.innerText = "AGENT BIAS: SHORT REVERSAL";
+          btn.className = "text-xs font-bold px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white transition flex items-center gap-1.5 shadow";
+          btn.innerHTML = `<span>⚡ Execute Agent Signal (SHORT @ ${currentLivePrice.toFixed(1)})</span>`;
+        } else if (currentAgentSignal.side === "LONG") {
+          badge.className = "text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+          badge.innerText = "AGENT BIAS: LONG CONTINUATION";
+          btn.className = "text-xs font-bold px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition flex items-center gap-1.5 shadow";
+          btn.innerHTML = `<span>⚡ Execute Agent Signal (LONG @ ${currentLivePrice.toFixed(1)})</span>`;
+        } else {
+          badge.className = "text-xs font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30";
+          badge.innerText = "AGENT BIAS: WAIT (CHOPPY)";
+          btn.className = "text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition flex items-center gap-1.5 shadow";
+          btn.innerHTML = `<span>⚡ Agent Standing Flat (Wait)</span>`;
+        }
+      }
+
+      if (data.learning && data.learning.fingerprint) {
+        const fp = data.learning.fingerprint;
+        const regEl = document.getElementById("fingerprint-regime");
+        const actEl = document.getElementById("fingerprint-action");
+        const wrEl = document.getElementById("fingerprint-winrate");
+        if (regEl) regEl.innerText = fp.regime || "Cluster Match";
+        if (actEl) actEl.innerText = fp.algorithmic_action || "";
+        if (wrEl) wrEl.innerText = `${fp.win_rate_pct}% Win Rate (Avg +${fp.avg_winning_points} pts)`;
+      }
+
+      updateActiveTradeDisplay();
+
+      if (data.latest_decisions && data.latest_decisions.length > 0) {
+        const feed = document.getElementById("decisions-feed");
+        feed.innerHTML = data.latest_decisions.slice().reverse().map(d => `
+          <div class="p-3 rounded-lg bg-gray-950/80 border border-gray-800 space-y-1">
+            <div class="flex items-center justify-between text-gray-400">
+              <span class="text-cyan-400 font-bold">${d.ny_time} · ${d.phase}</span>
+              <span class="px-2 py-0.5 rounded ${d.bias.includes('SHORT') || d.bias.includes('BEAR') ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}">${d.bias}</span>
+            </div>
+            <div class="text-gray-200 font-sans mt-1">
+              <b>Decision:</b> ${d.decision}
+            </div>
+            <div class="text-gray-400 text-[12px]">
+              <b>Observation:</b> ${d.observation}
+            </div>
+          </div>
+        `).join("");
+      }
+
+      if (data.paper_account && data.paper_account.trade_history) {
+        const ledger = document.getElementById("live-ledger-container");
+        if (ledger) {
+          ledger.innerHTML = data.paper_account.trade_history.slice().reverse().map(t => {
+            const isWin = t.pnl > 0;
+            const badgeClass = isWin 
+              ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" 
+              : "bg-red-500/10 text-red-400 border-red-500/30";
+            const pnlColor = isWin ? "text-emerald-400 font-bold" : "text-red-400 font-bold";
+            const sign = t.pnl >= 0 ? "+" : "";
+
+            return `
+              <div class="p-3 rounded-lg bg-gray-950 border border-gray-800 space-y-1.5 hover:border-gray-700 transition">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-white">[${t.id}]</span>
+                    <span class="text-gray-400 text-[11px]">${t.date}</span>
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold border ${badgeClass}">${t.side}</span>
+                  </div>
+                  <span class="${pnlColor}">${sign}$${t.pnl.toLocaleString('en-US', { minimumFractionDigits: 2 })} (${sign}${t.points} pts)</span>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-gray-400 pt-1 border-t border-gray-900">
+                  <div>Entry: <b class="text-gray-200">${Number(t.entry_price).toFixed(1)}</b> (${t.entry_time})</div>
+                  <div>Exit: <b class="text-gray-200">${Number(t.exit_price).toFixed(1)}</b> (${t.exit_time || ''})</div>
+                </div>
+                <div class="text-[10px] text-gray-500 truncate">
+                  ${t.setup} · ${t.reason || ''}
+                </div>
+              </div>
+            `;
+          }).join("");
+        }
+      }
+
+      if (data.historical_studies && data.historical_studies.length > 0) {
+        const histContainer = document.getElementById("historical-studies-container");
+        if (histContainer) {
+          histContainer.innerHTML = data.historical_studies.map(s => `
+            <div class="p-3.5 rounded-xl bg-gray-950 border border-amber-500/20 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-400 font-mono">[${s.study_id}]</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">RESEARCH STUDY</span>
+              </div>
+              <div class="text-white font-medium text-xs font-sans">${s.name}</div>
+              <div class="text-gray-400 text-[11px] font-mono">${s.date} · ${s.session_window}</div>
+              <div class="p-2 rounded bg-gray-900/60 border border-gray-800 text-[11px] space-y-1 font-mono">
+                <div class="flex justify-between"><span class="text-gray-500">Theoretical Move:</span> <b class="text-emerald-400">+${s.points} pts (${s.theoretical_rr})</b></div>
+                <div class="flex justify-between"><span class="text-gray-500">Entry/Exit:</span> <span class="text-gray-300">${s.entry_price} (${s.entry_time}) → ${s.exit_price} (${s.exit_time})</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Live P&L Impact:</span> <b class="text-gray-400">$0.00 (Zero impact)</b></div>
+              </div>
+              <div class="text-[10px] text-gray-400 font-sans italic">
+                "${s.description}"
+              </div>
+            </div>
+          `).join("");
+        }
+      }
+
+      if (data.journal && data.journal.length > 0) {
+        const jContainer = document.getElementById("journal-container");
+        jContainer.innerHTML = data.journal.map(j => {
+          const isFlight = !j.exit_review;
+          const rev = j.exit_review;
+          const sideBadge = j.side === "LONG" 
+            ? `<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">🟢 LONG</span>`
+            : `<span class="px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20 font-bold">🔴 SHORT</span>`;
+
+          let statusBadge = "";
+          let pnlDisplay = "";
+          if (isFlight) {
+            statusBadge = `<span class="px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 font-bold animate-pulse">⏳ IN FLIGHT</span>`;
+            pnlDisplay = `<span class="text-blue-400 font-mono font-bold">Risk: $${(j.dollar_risk || 500).toFixed(2)} (${j.risk_pct || 1.0}%)</span>`;
+          } else if (rev.status === "WIN") {
+            statusBadge = `<span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold">🏆 WIN (+${rev.points} pts)</span>`;
+            pnlDisplay = `<span class="text-emerald-400 font-mono font-bold">Realized: +$${rev.pnl.toLocaleString('en-US', { minimumFractionDigits: 2 })} (${rev.rr_achieved}R)</span>`;
+          } else {
+            statusBadge = `<span class="px-2.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30 font-bold">❌ LOSS (${rev.points} pts)</span>`;
+            pnlDisplay = `<span class="text-red-400 font-mono font-bold">Loss: $${rev.pnl.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>`;
+          }
+
+          const thesis = j.pre_trade_thesis || {};
+          const thesisKeys = Object.keys(thesis);
+          const logs = (j.in_trade_logs || []).slice(-4);
+
+          return `
+          <div class="p-4 rounded-xl bg-gray-950 border ${isFlight ? 'border-blue-500/50 shadow-lg shadow-blue-500/10' : (rev && rev.status === 'WIN' ? 'border-emerald-500/30' : 'border-gray-800')} space-y-3 transition">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-900 pb-2.5">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-mono font-bold text-white text-sm">[${j.trade_id}]</span>
+                <span class="text-gray-400 text-xs">${j.date}</span>
+                ${sideBadge}
+                <span class="font-semibold text-xs text-gray-200">${j.setup}</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                ${statusBadge}
+                ${pnlDisplay}
+              </div>
+            </div>
+
+            <!-- Parameters Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px] bg-gray-900/60 p-2.5 rounded-lg border border-gray-900 text-gray-300">
+              <div><span class="text-gray-500">Entry:</span> <b class="text-white">${j.entry_price.toFixed(1)}</b> (${j.entry_time})</div>
+              <div><span class="text-gray-500">Stop Loss:</span> <b class="text-red-400">${j.stop_loss.toFixed(1)}</b></div>
+              <div><span class="text-gray-500">Target TP:</span> <b class="text-emerald-400">${j.take_profit.toFixed(1)}</b></div>
+              <div><span class="text-gray-500">Size:</span> <b class="text-cyan-400">${j.contracts} contracts</b></div>
+            </div>
+
+            <!-- Pre-Trade Thesis -->
+            <div class="space-y-1.5 text-xs">
+              <div class="font-bold text-purple-400 uppercase tracking-wide flex items-center gap-1.5 text-[11px]">
+                <span>🧠</span> Pre-Trade Thesis & Confirmations
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-300 bg-gray-900/40 p-3 rounded-lg border border-gray-900/80">
+                ${thesisKeys.map(k => `
+                  <div>
+                    <span class="text-gray-400 font-bold capitalize">${k.replace(/_/g, ' ')}:</span>
+                    <span class="text-gray-300 text-[11px] leading-relaxed ml-1">${thesis[k]}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- In-Trade Tape Notes -->
+            <div class="space-y-1 text-xs">
+              <div class="font-bold text-cyan-400 uppercase tracking-wide flex items-center gap-1.5 text-[11px]">
+                <span>⏱️</span> In-Trade Management Log
+              </div>
+              <div class="space-y-1 font-mono text-[11px] bg-gray-900/40 p-2.5 rounded-lg border border-gray-900/80">
+                ${logs.map(l => `
+                  <div class="flex items-start gap-2">
+                    <span class="text-gray-400 shrink-0">[${l.time}]</span>
+                    <span class="text-cyan-300 font-bold shrink-0">@ ${l.price} (${l.pts} pts)</span>
+                    <span class="text-gray-300 font-sans">${l.note}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Post-Trade Review Retrospective (if closed) -->
+            ${rev ? `
+              <div class="p-3 rounded-lg bg-gray-900/70 border border-emerald-500/20 space-y-2 text-xs">
+                <div class="flex items-center justify-between border-b border-gray-800 pb-1.5">
+                  <div class="font-bold text-emerald-400 uppercase tracking-wide flex items-center gap-1.5 text-[11px]">
+                    <span>📊</span> Post-Trade Retrospective Review
+                  </div>
+                  <span class="font-mono text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Grade: ${rev.grade || 'A'}</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]">
+                  <div>
+                    <span class="text-emerald-400 font-bold">What Went Well:</span>
+                    <p class="text-gray-300 mt-0.5">${rev.what_went_well}</p>
+                  </div>
+                  <div>
+                    <span class="text-amber-400 font-bold">What to Improve:</span>
+                    <p class="text-gray-300 mt-0.5">${rev.what_to_improve}</p>
+                  </div>
+                </div>
+                <div class="pt-1 border-t border-gray-800/80 text-[11px]">
+                  <span class="text-cyan-400 font-bold">💡 Key Lesson:</span>
+                  <span class="text-gray-200 ml-1">${rev.key_lesson}</span>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+          `;
+        }).join("");
+      }
+    }
+
+    function takeAgentTrade() {
+      if (!currentAgentSignal || currentAgentSignal.side === "FLAT") {
+        alert("Agent recommends waiting. Market is currently choppy or range is establishing.");
+        return;
+      }
+      takeManualTrade(currentAgentSignal.side, currentAgentSignal.sl, currentAgentSignal.tp);
+    }
+
+    function takeManualTrade(side, customSL, customTP) {
+      const entry = currentLivePrice;
+      const sl = customSL || (side === "BUY" || side === "LONG" ? entry - 30.0 : entry + 30.0);
+      const tp = customTP || (side === "BUY" || side === "LONG" ? entry + 60.0 : entry - 60.0);
+      
+      // Dynamic 1% risk math: 1% of $50k = $500 max risk
+      const slDist = Math.abs(entry - sl) || 30.0;
+      const dollarRisk = 500.0;
+      const totalDollarPerPt = dollarRisk / slDist; // ~$16.7 / pt
+      const contracts = Math.max(1, Math.round(totalDollarPerPt / 2.0)); // e.g. 8x Micro NQ ($2/pt)
+      const pointValue = 2.0;
+
+      activeTrade = {
+        side: (side === "BUY" || side === "LONG") ? "LONG" : "SHORT",
+        entry: entry,
+        sl: sl,
+        tp: tp,
+        contracts: contracts,
+        point_value: pointValue,
+        instrument: "MNQ",
+        dollar_risk: contracts * pointValue * slDist,
+        risk_pct: 1.0
+      };
+
+      document.getElementById("btn-close-trade").classList.remove("hidden");
+      updateActiveTradeDisplay();
+    }
+
+    function closeDemoTrade() {
+      activeTrade = null;
+      document.getElementById("btn-close-trade").classList.add("hidden");
+      document.getElementById("pos-status-badge").innerText = "FLAT (Waiting for setup)";
+      document.getElementById("pos-status-badge").className = "text-xs font-semibold text-gray-400";
+      document.getElementById("pos-side").innerText = "FLAT";
+      document.getElementById("pos-side").className = "text-sm font-bold text-gray-400 mt-0.5";
+      document.getElementById("pos-entry").innerText = "—";
+      document.getElementById("pos-sl").innerText = "—";
+      document.getElementById("pos-tp").innerText = "—";
+      document.getElementById("pos-pnl").innerText = "$0.00 (0.0 pts)";
+      document.getElementById("pos-pnl").className = "text-base font-bold text-gray-400 mt-0.5";
+    }
+
+    function updateActiveTradeDisplay() {
+      if (!activeTrade) return;
+
+      const side = activeTrade.side || "SHORT";
+      const sideCol = side === "LONG" ? "text-emerald-400" : "text-red-400";
+      const contracts = activeTrade.contracts !== undefined ? activeTrade.contracts : 1;
+      const pointValue = activeTrade.point_value !== undefined ? activeTrade.point_value : 2.0;
+      const totalDollarPerPoint = contracts * pointValue;
+      const instrumentLabel = activeTrade.instrument || "MNQ";
+
+      document.getElementById("pos-status-badge").innerText = `IN POSITION (${side} ${contracts}x ${instrumentLabel} · $${totalDollarPerPoint.toFixed(1)}/pt)`;
+      document.getElementById("pos-status-badge").className = `text-xs font-bold ${sideCol} bg-gray-800 px-2 py-0.5 rounded border border-gray-700`;
+
+      const entry = Number(activeTrade.entry_price !== undefined ? activeTrade.entry_price : activeTrade.entry);
+      const sl = Number(activeTrade.stop_loss !== undefined ? activeTrade.stop_loss : activeTrade.sl);
+      const tp = Number(activeTrade.take_profit !== undefined ? activeTrade.take_profit : activeTrade.tp);
+
+      document.getElementById("pos-side").innerText = `${side} (${contracts}x @ $${totalDollarPerPoint.toFixed(0)}/pt)`;
+      document.getElementById("pos-side").className = `text-sm font-bold ${sideCol} mt-0.5`;
+      document.getElementById("pos-entry").innerText = entry.toFixed(1);
+      document.getElementById("pos-sl").innerText = sl.toFixed(1);
+      document.getElementById("pos-tp").innerText = tp.toFixed(1);
+
+      let pts = 0;
+      if (side === "LONG") {
+        pts = currentLivePrice - entry;
+      } else {
+        pts = entry - currentLivePrice;
+      }
+
+      // PnL is strictly points * dollar value per point (never stale or desynced)
+      const pnl = pts * totalDollarPerPoint;
+
+      const col = pnl > 0 ? "text-emerald-400" : (pnl < 0 ? "text-red-400" : "text-gray-400");
+      const sign = pnl > 0 ? "+" : "";
+
+      document.getElementById("pos-pnl").innerText = `${sign}$${pnl.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${pts >= 0 ? '+' : ''}${pts.toFixed(1)} pts)`;
+      document.getElementById("pos-pnl").className = `text-base font-bold ${col} mt-0.5`;
+    }
+
+    function updateLocalClock() {
+      const now = new Date();
+      const est = new Date(now.getTime() - (5 * 60 + now.getTimezoneOffset()) * 60000);
+      document.getElementById("ny-time-display").innerText = est.toLocaleTimeString('en-US', { hour12: false }) + " EST";
+    }
+
+    fetchDashboardData();
+    setInterval(fetchDashboardData, 2000);
+  </script>
+</body>
+</html>

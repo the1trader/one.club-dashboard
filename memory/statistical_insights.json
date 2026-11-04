@@ -1,0 +1,21 @@
+{
+  "study_period": "2026-08-25 to 2026-11-03 (60 Days)",
+  "total_sessions_analyzed": 50,
+  "total_trades_taken": 38,
+  "audited_status": "AUDITED_BY_INDEPENDENT_INSPECTOR",
+  "win_rate_pct": 15.8,
+  "non_loss_rate_pct": 23.7,
+  "wins": 6,
+  "breakevens": 3,
+  "losses": 29,
+  "total_points_captured": -366.0,
+  "total_dollar_pnl": -7320.0,
+  "average_rr": 2.06,
+  "stopped_on_entry_bar_count": 23,
+  "critical_audit_findings": [
+    "Original claimed 64.6% win rate FAILED audit due to lookahead bias (if hit_tp evaluated before hit_sl) and microscopic 2-4 pt stops on NQ cash open.",
+    "23 out of 29 losses were stopped out in the first 5 minutes due to placing stops too close to the cash open noise.",
+    "The 6 legitimate WIN trades all had realistic structural stops between 20.0 and 53.5 points.",
+    "Rule Revision: Stop loss MUST be anchored to the 09:30 cash open swing low/high (20-40 pts buffer), NOT pre-market 08:30 noise."
+  ]
+}
