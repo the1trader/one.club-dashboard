@@ -423,63 +423,75 @@ def main():
                 curr_exit = u500 if paper.active_position.get("underlying_pair") == "US500" else u100
                 paper.close_position(curr_exit, "10:30 Macro Window Delivery Exit")
 
-            # Autonomous Short Reversal Execution (Dynamic 1% Risk & Structural Stop Loss)
+            # Institutional Short Reversal Execution (FVG Tap + 75/25 Two-Tier Scaling)
             if not paper.active_position and not reversal_trade_executed:
-                reversal_trade_executed = True
-
-                # Determine confirming weaker instrument under SMT Divergence
-                # If US500 broke structure / lower high while US100 was squeezing, select US500!
                 trade_instrument = "US500" if (u500 > 0.0) else "US100"
 
                 if trade_instrument == "US500":
                     entry_p = u500
-                    # Structural Stop: Anchored strictly above the 10:18-10:25 MSS swing high + 4.0 pts buffer
                     swing_high = h_mss_u500 or h_session_u500 or (u500 + 14.0)
                     sl = round(swing_high + 4.0, 1)
-                    tp = round(l_730_u500 or (u500 - (sl - u500) * 3.5), 1)
+                    # T1: Opposing session liquidity / 2.2R (75% Core Bank)
+                    tp1 = round(entry_p - (sl - entry_p) * 2.2, 1)
+                    # T2: HTF Draw on Liquidity (25% Runner to pre-market low / 4.0R)
+                    tp2 = round(l_730_u500 or (entry_p - (sl - entry_p) * 4.0), 1)
                     target_pair = "US500"
+                    fvg_zone_low = swing_high - 16.0
+                    fvg_zone_high = swing_high - 4.0
                 else:
                     entry_p = u100
                     swing_high = h_mss_u100 or h_session_u100 or (u100 + 40.0)
                     sl = round(swing_high + 6.0, 1)
-                    tp = round(l_730_u100 or (u100 - (sl - u100) * 2.5), 1)
+                    # T1: 2.2R (75% Core Bank)
+                    tp1 = round(entry_p - (sl - entry_p) * 2.2, 1)
+                    # T2: Pre-market low 28,132.4 / 4.0R (25% Runner)
+                    tp2 = round(l_730_u100 or 28132.4, 1)
                     target_pair = "US100"
+                    fvg_zone_low = swing_high - 150.0
+                    fvg_zone_high = swing_high - 80.0
 
-                ok, msg = paper.open_position("SHORT", entry_p, sl, tp, setup="10:30 Macro High SMT Short Reversal", instrument=target_pair)
+                reversal_trade_executed = True
+                ok, msg = paper.open_position(
+                    "SHORT", entry_p, sl, tp1, htf_target=tp2,
+                    setup="10:30 Macro SMT FVG Retest Short (75/25 Exit)",
+                    instrument=target_pair
+                )
                 if ok:
                     pos = paper.active_position
                     thesis = {
                         "w1_context": "07:30 Range reference established.",
                         "w2_manipulation": "08:30 had no clean hunt (contained inside range). Delayed energy.",
                         "smt_divergence": f"Bearish SMT confirmed: Selected confirming weaker instrument {target_pair} exhibiting 1m displacement MSS.",
-                        "confirmation": f"1m Bearish MSS breakdown confirmed. Entry @ {entry_p:.1f} on supply retest.",
+                        "fvg_retest_tap": f"Executed on supply block retest @ {entry_p:.1f}. High remained unchallenged.",
                         "structural_sl_rule": f"SL anchored strictly to structural swing high ({swing_high:.1f} + buffer = {sl:.1f}). NO arbitrary points.",
-                        "risk_plan": f"Dynamic 1.0% account risk (${pos['dollar_risk']:.2f}) sized for {pos['contracts']} contracts ({pos['instrument']}). Target: {tp:.1f} ({pos['rr_ratio']}R)."
+                        "two_tier_exit_plan": f"Dynamic 1.0% risk (${pos['dollar_risk']:.2f}) sized for {pos['total_contracts']}x {pos['instrument']} (Core: {pos['core_contracts']}x @ T1 {tp1:.1f} | Runner: {pos['runner_contracts']}x @ T2 {tp2:.1f})."
                     }
-                    journal.log_pre_trade(pos["id"], pos["side"], pos["entry_price"], pos["stop_loss"], pos["take_profit"], pos["dollar_risk"], pos["contracts"], pos["setup"], thesis)
+                    journal.log_pre_trade(pos["id"], pos["side"], pos["entry_price"], pos["stop_loss"], pos["take_profit_1"], pos["dollar_risk"], pos["total_contracts"], pos["setup"], thesis)
                     decisions.log(
                         phase=phase_name,
-                        observation=f"10:30 Macro Reversal triggered on {target_pair}. Structural Stop anchored to swing high {swing_high:.1f} -> SL: {sl:.1f}.",
-                        decision=f"DYNAMIC 1% ORDER: SHORT {target_pair} ({pos['instrument']}) {pos['contracts']}x @ {entry_p:.1f} | Structural SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${pos['dollar_risk']:.2f} (1.0%)",
+                        observation=f"10:30 Macro Reversal triggered on {target_pair}. FVG supply retest tapped @ {entry_p:.1f}. Structural Stop: {sl:.1f}.",
+                        decision=f"DYNAMIC 1% 2-TIER ORDER: SHORT {target_pair} ({pos['instrument']}) {pos['total_contracts']}x (Core: {pos['core_contracts']}x @ T1 {tp1:.1f} | Runner: {pos['runner_contracts']}x @ T2 {tp2:.1f}) | Structural SL: {sl:.1f} | Risk: ${pos['dollar_risk']:.2f} (1.0%)",
                         bias="SHORT_ACTIVE",
                         us100=u100,
                         us500=u500,
-                        extra={"Setup": "10:30 Macro Short Reversal", "Instrument": target_pair, "Entry": f"{entry_p:.1f}", "Structural_SL": f"{sl:.1f}", "Target": f"{tp:.1f}", "R:R": f"{pos['rr_ratio']}R"}
+                        extra={"Setup": "10:30 Macro FVG Reversal", "Instrument": target_pair, "Entry": f"{entry_p:.1f}", "Structural_SL": f"{sl:.1f}", "Target_1": f"{tp1:.1f}", "Target_2_Runner": f"{tp2:.1f}", "R:R_T1": f"{pos['rr_ratio']}R"}
                     )
             elif paper.active_position:
                 pos = paper.active_position
                 active_pair = pos.get("underlying_pair", "US100")
                 curr_price = u500 if active_pair == "US500" else u100
                 pts = (pos["entry_price"] - curr_price) if pos["side"] == "SHORT" else (curr_price - pos["entry_price"])
+                t1_status = "T1 HIT (75% Banked, Runner @ BE)" if pos.get("t1_hit") else f"Target 1: {pos.get('take_profit_1', 0.0):.1f}"
                 if poll_count % 15 == 0:
-                    journal.log_trade_management(pos["id"], curr_price, f"Managing active {active_pair} position. Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):+,.2f}.")
+                    journal.log_trade_management(pos["id"], curr_price, f"Managing active {active_pair} position. Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):+,.2f} | Status: {t1_status}.")
                 decisions.log(
                     phase=phase_name,
                     observation=f"Autonomous Trade in flight on {active_pair} ({pos['side']} @ {pos['entry_price']:.1f}). Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):,.2f}",
-                    decision="MANAGING POSITION — Automatic risk-free breakeven active at +1.5R. Structural SL respected.",
+                    decision=f"MANAGING 2-TIER POSITION — [{t1_status}]. Structural SL: {pos.get('stop_loss', 0.0):.1f}.",
                     bias="SHORT_ACTIVE",
                     us100=u100,
-                    us500=u500
+                    us500=u500,
+                    extra={"T1_Status": t1_status, "Active_Contracts": f"{pos.get('active_contracts', pos['contracts'])}x"}
                 )
             else:
                 decisions.log(

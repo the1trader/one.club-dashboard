@@ -142,11 +142,14 @@ class PaperAccount:
         with open(ACCOUNT_FILE, "w") as f:
             json.dump(data, f, indent=2)
 
-    def open_position(self, side: str, price: float, structural_stop: float, target_price: float, setup: str = "1trade", instrument: str = "US100") -> Tuple[bool, str]:
+    def open_position(self, side: str, price: float, structural_stop: float, target_price: float, htf_target: Optional[float] = None, setup: str = "1trade", instrument: str = "US100") -> Tuple[bool, str]:
         if self.active_position is not None:
             return False, "Already in an active trade (One trade at a time rule)."
 
-        ok, msg, spec = self.risk_manager.calculate_order(self.balance, side, price, structural_stop, target_price, instrument=instrument)
+        ok, msg, spec = self.risk_manager.calculate_order(
+            self.balance, side, price, structural_stop, target_price,
+            htf_target=htf_target, instrument=instrument
+        )
         if not ok:
             return False, msg
 
@@ -157,19 +160,29 @@ class PaperAccount:
             "side": spec["side"],
             "instrument": spec.get("instrument", "MNQ_MICRO"),
             "underlying_pair": spec.get("underlying_pair", "US100"),
-            "contracts": spec["contracts"],
+            "total_contracts": spec["total_contracts"],
+            "active_contracts": spec["total_contracts"],
+            "core_contracts": spec["core_contracts"],
+            "runner_contracts": spec["runner_contracts"],
+            "contracts": spec["total_contracts"],
             "entry_price": spec["entry_price"],
             "current_price": spec["entry_price"],
             "stop_loss": spec["stop_loss"],
-            "take_profit": spec["take_profit"],
+            "take_profit": spec["take_profit_1"],
+            "take_profit_1": spec["take_profit_1"],
+            "take_profit_2": spec["take_profit_2"],
             "sl_points": spec["sl_points"],
-            "tp_points": spec["tp_points"],
-            "rr_ratio": spec["rr_ratio"],
+            "tp_points": spec["tp1_points"],
+            "tp1_points": spec["tp1_points"],
+            "tp2_points": spec["tp2_points"],
+            "rr_ratio": spec["rr_ratio_t1"],
             "dollar_risk": spec["dollar_risk"],
             "risk_pct": spec["risk_pct"],
-            "potential_reward": spec["potential_reward"],
+            "potential_reward": spec["total_potential_reward"],
             "point_value": spec["point_value"],
             "setup": setup,
+            "t1_hit": False,
+            "realized_partial_pnl": 0.0,
             "unrealized_pnl": 0.0,
             "unrealized_points": 0.0
         }
@@ -182,8 +195,9 @@ class PaperAccount:
                 "instrument": spec.get("instrument", "MNQ_MICRO"),
                 "underlying_pair": spec.get("underlying_pair", "US100"),
                 "structural_sl": f"{spec['stop_loss']:.1f} ({spec['sl_points']:.1f} pts risk anchored to structural swing)",
-                "target_tp": f"{spec['take_profit']:.1f} ({spec['tp_points']:.1f} pts reward, {spec['rr_ratio']}R target)",
-                "risk_plan": f"Dynamic 1.0% account risk (${spec['dollar_risk']:.2f}) sized for {spec['contracts']} contracts.",
+                "target_t1": f"{spec['take_profit_1']:.1f} (75% Core exit, {spec['rr_ratio_t1']}R)",
+                "target_t2": f"{spec['take_profit_2']:.1f} (25% Runner exit, HTF Draw on Liquidity)",
+                "risk_plan": f"Dynamic 1.0% risk (${spec['dollar_risk']:.2f}) sized for {spec['total_contracts']}x {spec['instrument']} (Core: {spec['core_contracts']}x, Runner: {spec['runner_contracts']}x).",
                 "execution_trigger": "Structural confirmation via ICT Time & Price (Liquidity purge + 1m MSS/FVG retest)."
             }
             self.journal.log_pre_trade(
@@ -191,14 +205,14 @@ class PaperAccount:
                 side=spec["side"],
                 entry_price=spec["entry_price"],
                 stop_loss=spec["stop_loss"],
-                take_profit=spec["take_profit"],
+                take_profit=spec["take_profit_1"],
                 dollar_risk=spec["dollar_risk"],
-                contracts=spec["contracts"],
+                contracts=spec["total_contracts"],
                 setup=setup,
                 thesis_dict=thesis
             )
 
-        return True, f"Dynamic 1% Order Executed: {spec['underlying_pair']} ({spec['instrument']}) {spec['side']} {spec['contracts']}x (Risk: ${spec['dollar_risk']:.2f} / {spec['risk_pct']:.1f}%)"
+        return True, f"Dynamic 1% Order Executed: {spec['underlying_pair']} ({spec['instrument']}) {spec['side']} {spec['total_contracts']}x (Core: {spec['core_contracts']}x @ T1 {spec['take_profit_1']:.1f} | Runner: {spec['runner_contracts']}x @ T2 {spec['take_profit_2']:.1f})"
 
     def update_price(self, current_price: float, instrument: str = "US100"):
         if not self.active_position:
@@ -211,48 +225,59 @@ class PaperAccount:
 
         pos["current_price"] = current_price
         side = pos["side"]
-        r_points = pos.get("sl_points", 25.0)
-
-        if side == "LONG":
-            pts = current_price - pos["entry_price"]
-            # Automatic Risk-Free Breakeven at +1.5R
-            if pts >= (r_points * 1.5) and pos["stop_loss"] < pos["entry_price"]:
-                pos["stop_loss"] = pos["entry_price"] + 1.0  # Trailed to BE + 1 pt
-                if self.journal:
-                    self.journal.log_trade_management(
-                        pos["id"],
-                        current_price,
-                        f"Target +1.5R reached. Stop Loss trailed to Breakeven +1.0 pt ({pos['stop_loss']:.1f}). Trade is now 100% Risk-Free."
-                    )
-
-            if current_price <= pos["stop_loss"]:
-                self.close_position(pos["stop_loss"], "STOP_LOSS_HIT")
-                return
-            elif current_price >= pos["take_profit"]:
-                self.close_position(pos["take_profit"], "TAKE_PROFIT_HIT")
-                return
-        else:  # SHORT
-            pts = pos["entry_price"] - current_price
-            # Automatic Risk-Free Breakeven at +1.5R
-            if pts >= (r_points * 1.5) and pos["stop_loss"] > pos["entry_price"]:
-                pos["stop_loss"] = pos["entry_price"] - 1.0  # Trailed to BE + 1 pt
-                if self.journal:
-                    self.journal.log_trade_management(
-                        pos["id"],
-                        current_price,
-                        f"Target +1.5R reached. Stop Loss trailed to Breakeven +1.0 pt ({pos['stop_loss']:.1f}). Trade is now 100% Risk-Free."
-                    )
-
-            if current_price >= pos["stop_loss"]:
-                self.close_position(pos["stop_loss"], "STOP_LOSS_HIT")
-                return
-            elif current_price <= pos["take_profit"]:
-                self.close_position(pos["take_profit"], "TAKE_PROFIT_HIT")
-                return
-
-        pos["unrealized_points"] = round(pts, 1)
         pv = pos.get("point_value", self.point_value)
-        pos["unrealized_pnl"] = round(pts * pv * pos["contracts"], 2)
+
+        # 1. Check Full Stop Loss if T1 has NOT been reached yet
+        if not pos.get("t1_hit"):
+            if (side == "LONG" and current_price <= pos["stop_loss"]) or (side == "SHORT" and current_price >= pos["stop_loss"]):
+                self.close_position(pos["stop_loss"], "STOP_LOSS_HIT")
+                return
+
+            # Check Target 1 (Draw on Liquidity — Bank 75% Core)
+            t1_reached = (current_price >= pos["take_profit_1"]) if side == "LONG" else (current_price <= pos["take_profit_1"])
+            if t1_reached:
+                pts_t1 = (pos["take_profit_1"] - pos["entry_price"]) if side == "LONG" else (pos["entry_price"] - pos["take_profit_1"])
+                core_cnt = pos.get("core_contracts", pos["contracts"])
+                runner_cnt = pos.get("runner_contracts", 0)
+                pnl_t1 = round(pts_t1 * pv * core_cnt, 2)
+
+                self.balance += pnl_t1
+                pos["realized_partial_pnl"] = pnl_t1
+                pos["t1_hit"] = True
+
+                if runner_cnt > 0:
+                    pos["active_contracts"] = runner_cnt
+                    # Move Stop to Breakeven (100% Risk Free)
+                    pos["stop_loss"] = (pos["entry_price"] + 1.0) if side == "LONG" else (pos["entry_price"] - 1.0)
+                    if self.journal:
+                        self.journal.log_trade_management(
+                            pos["id"],
+                            current_price,
+                            f"🎯 TARGET 1 HIT! Banked 75% core position ({core_cnt}x) for +${pnl_t1:,.2f} (+{pts_t1:.1f} pts). Stop Loss moved to Breakeven ({pos['stop_loss']:.1f}) on remaining {runner_cnt}x runner. Trade is 100% Risk-Free."
+                        )
+                else:
+                    self.close_position(pos["take_profit_1"], "TAKE_PROFIT_T1_FULL")
+                    return
+
+        # 2. Managing the 25% Runner after Target 1 is banked
+        else:
+            # Check Runner Target 2 (HTF Liquidity Pool)
+            t2_reached = (current_price >= pos["take_profit_2"]) if side == "LONG" else (current_price <= pos["take_profit_2"])
+            if t2_reached:
+                self.close_position(pos["take_profit_2"], "RUNNER_HTF_TARGET_2_DELIVERY")
+                return
+
+            # Check Runner Breakeven Stop
+            be_hit = (current_price <= pos["stop_loss"]) if side == "LONG" else (current_price >= pos["stop_loss"])
+            if be_hit:
+                self.close_position(pos["stop_loss"], "RUNNER_STOP_AT_BREAKEVEN")
+                return
+
+        # Live Unrealized PnL Calculation
+        active_cnt = pos.get("active_contracts", pos["contracts"])
+        pts = (current_price - pos["entry_price"]) if side == "LONG" else (pos["entry_price"] - current_price)
+        pos["unrealized_points"] = round(pts, 1)
+        pos["unrealized_pnl"] = round(pts * pv * active_cnt, 2)
         self._save()
 
     def close_position(self, exit_price: float, reason: str = "MANUAL_OR_TIME_STOP"):
@@ -263,14 +288,17 @@ class PaperAccount:
         now_ny = datetime.now(NY_TZ)
         side = pos["side"]
         pv = pos.get("point_value", self.point_value)
+        partial_pnl = pos.get("realized_partial_pnl", 0.0)
+        active_cnt = pos.get("active_contracts", pos["contracts"])
 
         if side == "LONG":
-            pts = exit_price - pos["entry_price"]
+            final_pts = exit_price - pos["entry_price"]
         else:
-            pts = pos["entry_price"] - exit_price
+            final_pts = pos["entry_price"] - exit_price
 
-        pnl = pts * pv * pos["contracts"]
-        self.balance += pnl
+        runner_pnl = final_pts * pv * active_cnt
+        self.balance += runner_pnl
+        total_pnl = round(partial_pnl + runner_pnl, 2)
 
         record = {
             "id": pos["id"],
@@ -279,21 +307,24 @@ class PaperAccount:
             "side": side,
             "instrument": pos.get("instrument", "MNQ_MICRO"),
             "underlying_pair": pos.get("underlying_pair", "US100"),
-            "contracts": pos["contracts"],
+            "contracts": pos.get("total_contracts", pos["contracts"]),
             "entry_time": pos["time"],
             "exit_time": now_ny.strftime("%H:%M:%S EST"),
             "entry_price": pos["entry_price"],
             "exit_price": exit_price,
             "stop_loss": pos["stop_loss"],
-            "take_profit": pos["take_profit"],
+            "take_profit_1": pos.get("take_profit_1", pos.get("take_profit")),
+            "take_profit_2": pos.get("take_profit_2"),
             "sl_points": pos.get("sl_points"),
-            "tp_points": pos.get("tp_points"),
+            "tp_points": pos.get("tp1_points", pos.get("tp_points")),
             "rr_ratio": pos.get("rr_ratio"),
             "dollar_risk": pos.get("dollar_risk"),
             "risk_pct": pos.get("risk_pct"),
-            "points": round(pts, 1),
-            "pnl": round(pnl, 2),
-            "status": "WIN" if pnl > 0 else "LOSS",
+            "t1_hit": pos.get("t1_hit", False),
+            "partial_pnl": partial_pnl,
+            "points": round(final_pts, 1),
+            "pnl": total_pnl,
+            "status": "WIN" if total_pnl > 0 else "LOSS",
             "reason": reason
         }
 
