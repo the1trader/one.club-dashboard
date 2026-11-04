@@ -201,12 +201,34 @@
 - `[10:37:12 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
 - `[10:37:14 EST]` (Price: `28582.0`, +0.0 pts) — Managing active position. Live Points: +0.0 pts | P&L: $+0.00.
 
-### 📊 Post-Trade Review & Retrospective
+### 📊 Post-Trade Review & Institutional Autopsy
 - **Outcome & Realized P&L:** LOSS (-30.0 pts | **$-480.00**) | Realized R:R: **-1.0R**
-- **Execution Grade:** `B`
-- **What Went Well:** Honored the predetermined structural stop loss (-30.0 pts / $-480.00) immediately without widening stops or revenge trading.
-- **What to Improve:** Verify whether SMT divergence or 1m MSS displacement had proper volume confirmation prior to entry.
-- **💡 Key Lesson:** Losses are standard overhead in trading. Taking 1.0% dynamic risk ensures mathematical longevity and survivability.
+- **Execution Grade:** `C-` (Flawed Stop Placement & Asset Selection)
+
+#### 🔬 Root Cause Autopsy: Why Did LIVE-004 Hit Stop Loss?
+A side-by-side comparison between the Agent's execution (`LIVE-004` on NQ) and the Trader's manual execution on Pepperstone US500 (ES):
+
+| Execution Attribute | Trader's Manual Execution (Pepperstone US500) | Agent Autonomous Execution (LIVE-004 on NQ) |
+|---|---|---|
+| **Instrument** | **US 500 Index (Pepperstone CFD / ES)** | **NAS100 / US100 (NQ CFD)** |
+| **Market Structure Shift (MSS)** | Clean 1m MSS breakdown below `7,692.0` after `7,708.8` peak | No 1m MSS breakdown; NQ was actively squeezing higher |
+| **Cross-Pair SMT Divergence** | **Confirmed Weaker Asset**: Printed lower highs, rejected first | **Lagging Stronger Asset**: Squeezed buy-side liquidity into `28,684` |
+| **Entry Price & Timing** | `7,694.8` on supply block retest (10:30+ EST) | `28,582.0` (premature market order at 10:30 open) |
+| **Stop Loss Placement** | **`7,712.8`** (Anchored +4.0 pts above structural swing high `7,708.8`) | **`28,612.0`** (Arbitrary fixed `entry + 30.0 pts`) |
+| **Trade Outcome** | **🏆 Large Profit**: Retest peaked at `7,702.0`, plummeted to `7,681.1` (+13.7 pts / +54 ticks) | **❌ Stopped Out**: NQ tapped `28,612.0` at 10:37 EST (-30.0 pts / -$480) |
+
+#### 🔑 The 3 Critical Lessons Learned:
+1. **Never Use Arbitrary Fixed Point/Tick Stops:**
+   The agent hardcoded `sl = u100 + 30.0`. In institutional ICT/SMC mechanics, a Stop Loss represents **structural invalidation** ($H_{mss} + \text{buffer}$), the exact level that invalidates the bearish orderflow thesis. Placing a stop based on a fixed number of points is retail blindness that invites liquidity sweeps. The trader anchored their stop above the 10:18 EST swing high of `7,708.8` at `7,712.8`. Price retested into supply, never violated the swing high, and cascaded down.
+2. **Trade the Confirming Weaker Asset in Bearish SMT Divergence:**
+   When Bearish SMT divergence appears at 10:30, the rule is to **short the asset that broke market structure first (ES/US500)**. Never short the index that is still impulsively expanding upward (NQ/US100).
+3. **Dynamic Position Sizing Clamps Structural Stops to 1.0% Risk:**
+   By sizing contracts dynamically via `RiskManager`, the trader can afford whatever structural distance the market requires (whether 18 pts on ES or 60 pts on NQ) while guaranteeing the account dollar risk is strictly capped at 1.0% ($489.80).
+
+#### 🛠️ Codebase Fixes Applied (2026-11-04):
+- **`risk_manager.py`:** Added multi-instrument dynamic contract sizing supporting both US100 (MNQ/NQ) and US500 (MES/ES), dynamically calculating contracts from structural distance $\Delta_{sl}$ to lock dollar risk to exactly 1.0%.
+- **`paper_trader.py` / `paper_account.py`:** Added `instrument` tracking to `open_position`, `update_price`, and `close_position`. Position unrealized P&L and stops now track the corresponding streamed asset price.
+- **`1trade_agent.py` / `agent.py`:** Eliminated all hardcoded `+ 30.0` stops. Stop Loss is now dynamically anchored to $H_{mss} + \text{buffer}$. Added Cross-Pair SMT Weakness Selector to execute on the confirming weaker index (US500).
 
 ---
 

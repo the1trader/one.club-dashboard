@@ -142,11 +142,11 @@ class PaperAccount:
         with open(ACCOUNT_FILE, "w") as f:
             json.dump(data, f, indent=2)
 
-    def open_position(self, side: str, price: float, structural_stop: float, target_price: float, setup: str = "1trade") -> Tuple[bool, str]:
+    def open_position(self, side: str, price: float, structural_stop: float, target_price: float, setup: str = "1trade", instrument: str = "US100") -> Tuple[bool, str]:
         if self.active_position is not None:
             return False, "Already in an active trade (One trade at a time rule)."
 
-        ok, msg, spec = self.risk_manager.calculate_order(self.balance, side, price, structural_stop, target_price)
+        ok, msg, spec = self.risk_manager.calculate_order(self.balance, side, price, structural_stop, target_price, instrument=instrument)
         if not ok:
             return False, msg
 
@@ -155,6 +155,8 @@ class PaperAccount:
             "id": f"LIVE-{len(self.trade_history) + 1:03d}",
             "time": now_ny.strftime("%H:%M:%S EST"),
             "side": spec["side"],
+            "instrument": spec.get("instrument", "MNQ_MICRO"),
+            "underlying_pair": spec.get("underlying_pair", "US100"),
             "contracts": spec["contracts"],
             "entry_price": spec["entry_price"],
             "current_price": spec["entry_price"],
@@ -177,6 +179,8 @@ class PaperAccount:
         if self.journal:
             thesis = {
                 "setup": setup,
+                "instrument": spec.get("instrument", "MNQ_MICRO"),
+                "underlying_pair": spec.get("underlying_pair", "US100"),
                 "structural_sl": f"{spec['stop_loss']:.1f} ({spec['sl_points']:.1f} pts risk anchored to structural swing)",
                 "target_tp": f"{spec['take_profit']:.1f} ({spec['tp_points']:.1f} pts reward, {spec['rr_ratio']}R target)",
                 "risk_plan": f"Dynamic 1.0% account risk (${spec['dollar_risk']:.2f}) sized for {spec['contracts']} contracts.",
@@ -194,13 +198,17 @@ class PaperAccount:
                 thesis_dict=thesis
             )
 
-        return True, f"Dynamic 1% Order Executed: {spec['side']} {spec['contracts']}x (Risk: ${spec['dollar_risk']:.2f} / {spec['risk_pct']:.1f}%)"
+        return True, f"Dynamic 1% Order Executed: {spec['underlying_pair']} ({spec['instrument']}) {spec['side']} {spec['contracts']}x (Risk: ${spec['dollar_risk']:.2f} / {spec['risk_pct']:.1f}%)"
 
-    def update_price(self, current_price: float):
+    def update_price(self, current_price: float, instrument: str = "US100"):
         if not self.active_position:
             return
 
         pos = self.active_position
+        pos_pair = pos.get("underlying_pair", "US100")
+        if instrument != pos_pair:
+            return
+
         pos["current_price"] = current_price
         side = pos["side"]
         r_points = pos.get("sl_points", 25.0)
@@ -269,6 +277,8 @@ class PaperAccount:
             "date": now_ny.strftime("%Y-%m-%d"),
             "setup": pos["setup"],
             "side": side,
+            "instrument": pos.get("instrument", "MNQ_MICRO"),
+            "underlying_pair": pos.get("underlying_pair", "US100"),
             "contracts": pos["contracts"],
             "entry_time": pos["time"],
             "exit_time": now_ny.strftime("%H:%M:%S EST"),

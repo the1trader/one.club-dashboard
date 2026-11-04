@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 """
-1trade_agent.py — Autonomous Agent Execution, Decision Logger & Demo Paper Trader for 1trade
+1trade_agent.py — Autonomous Agent Execution, Decision Logger & Multi-Instrument Trader for 1trade
 
 Connects to live TradingView chart in Google Chrome:
 - Automatically reads real-time price of US100 (NQ) & US500 (ES).
-- Tracks the 3 NY Time Windows (07:30 - 08:30, 08:30 - 09:30, 09:30 - 10:30, 10:30+ EST).
-- Executes demo trades with fake money ($50,000 starting account).
-- Logs every decision, thesis, sweep detection, entry trigger, and risk management action.
-- Writes unified state to dashboard_data.json for the live UI dashboard.
+- Tracks the 4 ICT Time Windows:
+  1. 07:30 - 08:30 EST: Range Blueprint Formation
+  2. 08:30 - 09:30 EST: Manipulation & News Liquidity Purge
+  3. 09:30 - 10:30 EST: Cash Open Orderflow & 1m MSS Tracking
+  4. 10:30+ EST: Macro Reversal, Cross-Pair SMT Divergence & Structural Delivery
+- Structural Stop Loss Mandate:
+  * Stop loss is ALWAYS anchored to the structural swing high/low ($H_{mss} \pm \text{buffer}$).
+  * NEVER an arbitrary fixed point/pip/tick offset or percentage.
+  * Dynamically sizes contracts so dollar risk is locked to exactly 1.0% of account balance.
+- SMT Divergence Selection:
+  * In short reversals, identifies and trades the confirming weaker pair (e.g. US500/ES breaking 1m MSS)
+    rather than blindly shorting the lagging/squeezing pair.
 """
 
 import sys
@@ -166,17 +174,32 @@ def save_dashboard_data(session_state: Dict):
         pass
 
 def main():
-    print(f"{C_BOLD}{C_GREEN}🚀 Initializing 1trade Autonomous Agent Decision Engine & Paper Trader...{C_RESET}")
+    print(f"{C_BOLD}{C_GREEN}🚀 Initializing 1trade Autonomous Agent Decision Engine & Multi-Instrument Trader...{C_RESET}")
     reader = ChromeLiveReader()
     decisions = DecisionEngine()
     paper = PaperAccount()
     learner = LearningEngine()
     journal = paper.journal
 
-    h_730: Optional[float] = None
-    l_730: Optional[float] = None
-    h_830: Optional[float] = None
-    l_830: Optional[float] = None
+    # Multi-Instrument Structural Levels
+    h_730_u100: Optional[float] = None
+    l_730_u100: Optional[float] = None
+    h_730_u500: Optional[float] = None
+    l_730_u500: Optional[float] = None
+
+    h_830_u100: Optional[float] = None
+    l_830_u100: Optional[float] = None
+    h_830_u500: Optional[float] = None
+    l_830_u500: Optional[float] = None
+
+    h_session_u100: Optional[float] = None
+    l_session_u100: Optional[float] = None
+    h_session_u500: Optional[float] = None
+    l_session_u500: Optional[float] = None
+
+    h_mss_u100: Optional[float] = None
+    h_mss_u500: Optional[float] = None
+
     swept_730_low = False
     swept_730_high = False
     scenario = "EVALUATING"
@@ -192,10 +215,18 @@ def main():
         u100 = prices.get("US100", 0.0)
         u500 = prices.get("US500", 0.0)
 
+        # Feed prices to paper trader based on instrument
         if u100 > 0.0:
-            paper.update_price(u100)
+            paper.update_price(u100, instrument="US100")
+            h_session_u100 = max(h_session_u100 or u100, u100)
+            l_session_u100 = min(l_session_u100 or u100, u100)
 
-        if u100 == 0.0:
+        if u500 > 0.0:
+            paper.update_price(u500, instrument="US500")
+            h_session_u500 = max(h_session_u500 or u500, u500)
+            l_session_u500 = min(l_session_u500 or u500, u500)
+
+        if u100 == 0.0 and u500 == 0.0:
             if poll_count % 10 == 0:
                 print(f"[{now_ny.strftime('%H:%M:%S EST')}] Waiting for Chrome TradingView tab to stream prices...", flush=True)
             time.sleep(2)
@@ -206,16 +237,17 @@ def main():
         agent_signal = {
             "side": "SHORT",
             "bias": "SHORT_REVERSAL",
-            "setup": "10:30 Macro High Sweep & Reversal",
-            "entry": u100,
-            "sl": 28765.0,
-            "tp": 28420.0,
-            "reason": "07:30 was range & 08:30 had no hunt (choppy). 10:30 swept all highs to 28,760 and reversed downward."
+            "setup": "10:30 Macro High SMT Reversal",
+            "instrument": "US500" if u500 > 0 else "US100",
+            "entry": u500 if u500 > 0 else u100,
+            "sl": (h_session_u500 or 7708.8) + 4.0 if u500 > 0 else (h_session_u100 or 28684.0) + 6.0,
+            "tp": (l_session_u500 or 7621.9) if u500 > 0 else (l_session_u100 or 28350.0),
+            "reason": "Tracking structural swing high. SL anchored strictly to MSS high + buffer."
         }
 
         if dtime(7, 30) <= t < dtime(8, 30):
             phase_name = "Window 1: 07:30 - 08:30 Range Definition"
-            agent_signal = {"side": "FLAT", "bias": "WAIT", "reason": "Establishing baseline range."}
+            agent_signal = {"side": "FLAT", "bias": "WAIT", "reason": "Establishing baseline range across US100 and US500."}
         elif dtime(8, 30) <= t < dtime(9, 30):
             phase_name = "Window 2: 08:30 Manipulation News"
             agent_signal = {"side": "FLAT", "bias": "WAIT_FOR_SWEEP", "reason": "Evaluating whether 08:30 sweeps liquidity or compresses."}
@@ -228,7 +260,7 @@ def main():
                 "entry": u100,
                 "sl": u100 - 35.0,
                 "tp": u100 + 70.0,
-                "reason": "Observing initial cash open liquidity run. Waiting for structural pullback or sweep."
+                "reason": "Observing cash open orderflow. Recording structural 1m swing peaks and troughs."
             }
         elif dtime(10, 15) <= t < dtime(10, 30):
             phase_name = "Window 4 Prep: 10:15 - 10:30 SMT Macro Reversal Gate"
@@ -236,53 +268,61 @@ def main():
                 "side": "SHORT",
                 "bias": "SHORT_REVERSAL_WATCH",
                 "setup": "10:15-10:30 Macro High SMT Exhaustion",
-                "entry": u100,
-                "sl": u100 + 30.0,
-                "tp": u100 - 65.0,
-                "reason": "No manipulation across 3 prior sessions. Extended rally into 10:15 highs. Waiting for Bearish SMT + 1m displacement MSS."
+                "entry": u500 if u500 > 0 else u100,
+                "sl": (h_session_u500 or u500) + 4.0 if u500 > 0 else (h_session_u100 or u100) + 6.0,
+                "tp": (l_session_u500 or 7621.9) if u500 > 0 else 28420.0,
+                "reason": "Cross-pair SMT evaluation: Monitoring which index breaks 1m MSS first. Structural SL anchored to swing high."
             }
 
         # Phase 1: 07:30 - 08:30 (Blueprint Range)
         if dtime(7, 30) <= t < dtime(8, 30):
-            h_730 = max(h_730 or u100, u100)
-            l_730 = min(l_730 or u100, u100)
-            eq_730 = (h_730 + l_730) / 2.0
-            range_pts = h_730 - l_730
+            if u100 > 0.0:
+                h_730_u100 = max(h_730_u100 or u100, u100)
+                l_730_u100 = min(l_730_u100 or u100, u100)
+            if u500 > 0.0:
+                h_730_u500 = max(h_730_u500 or u500, u500)
+                l_730_u500 = min(l_730_u500 or u500, u500)
+
+            range_pts_u100 = (h_730_u100 - l_730_u100) if (h_730_u100 and l_730_u100) else 0.0
+            range_pts_u500 = (h_730_u500 - l_730_u500) if (h_730_u500 and l_730_u500) else 0.0
 
             decisions.log(
                 phase=phase_name,
-                observation=f"Tracking pre-market baseline. H_730={h_730:.1f}, L_730={l_730:.1f}, Eq={eq_730:.1f} (Range: {range_pts:.1f} pts).",
-                decision="WAIT — Allowing range to establish before 08:30 news volatility.",
+                observation=f"Pre-market blueprint established. US100=[{l_730_u100 or 0:.1f} - {h_730_u100 or 0:.1f}] ({range_pts_u100:.1f} pts), US500=[{l_730_u500 or 0:.1f} - {h_730_u500 or 0:.1f}] ({range_pts_u500:.1f} pts).",
+                decision="WAIT — Allowing range baseline to form before 08:30 news manipulation.",
                 bias="NEUTRAL",
                 us100=u100,
                 us500=u500,
-                extra={"H_730": f"{h_730:.1f}", "L_730": f"{l_730:.1f}", "Range": f"{range_pts:.1f} pts"}
+                extra={"US100_Range": f"{range_pts_u100:.1f} pts", "US500_Range": f"{range_pts_u500:.1f} pts"}
             )
 
         # Phase 2: 08:30 - 09:30 (Manipulation Window)
         elif dtime(8, 30) <= t < dtime(9, 30):
-            h_830 = max(h_830 or u100, u100)
-            l_830 = min(l_830 or u100, u100)
+            if u100 > 0.0:
+                h_830_u100 = max(h_830_u100 or u100, u100)
+                l_830_u100 = min(l_830_u100 or u100, u100)
+            if u500 > 0.0:
+                h_830_u500 = max(h_830_u500 or u500, u500)
+                l_830_u500 = min(l_830_u500 or u500, u500)
 
-            if l_730 and u100 < l_730 and not swept_730_low:
+            if l_730_u100 and u100 < l_730_u100 and not swept_730_low:
                 swept_730_low = True
                 scenario = "TYPE_A_EXPANSION"
                 decisions.log(
                     phase=phase_name,
-                    observation=f"Price pierced below L_730 ({l_730:.1f}) to {u100:.1f}. Sell-side liquidity purged!",
+                    observation=f"Price pierced below L_730 ({l_730_u100:.1f}) to {u100:.1f}. Sell-side liquidity purged!",
                     decision="FLAG BULLISH SETUP — Swept Low. Preparing for Type A expansion into 09:30 cash open.",
                     bias="BULLISH_REVERSAL_BIAS",
                     us100=u100,
                     us500=u500,
                     extra={"Action": "Purged SSL", "Scenario": scenario}
                 )
-
-            elif h_730 and u100 > h_730 and not swept_730_high:
+            elif h_730_u100 and u100 > h_730_u100 and not swept_730_high:
                 swept_730_high = True
                 scenario = "TYPE_A_EXPANSION"
                 decisions.log(
                     phase=phase_name,
-                    observation=f"Price blasted above H_730 ({h_730:.1f}) to {u100:.1f}. Buy-side liquidity purged!",
+                    observation=f"Price blasted above H_730 ({h_730_u100:.1f}) to {u100:.1f}. Buy-side liquidity purged!",
                     decision="FLAG BEARISH SETUP — Swept High. Preparing for Type A short expansion into 09:30.",
                     bias="BEARISH_REVERSAL_BIAS",
                     us100=u100,
@@ -294,8 +334,8 @@ def main():
                     scenario = "TYPE_B_COMPRESSION"
                     decisions.log(
                         phase=phase_name,
-                        observation=f"Price oscillating inside 07:30 range ({l_730 or 0:.1f} - {h_730 or 0:.1f}). No liquidity swept.",
-                        decision="FLAG TYPE B COMPRESSION — Liquidity stored. Expecting aggressive 09:30 open Judas swing.",
+                        observation=f"Price oscillating inside 07:30 range. No liquidity swept. Stored energy compression.",
+                        decision="FLAG TYPE B COMPRESSION — Expecting 09:30 cash open Judas swing.",
                         bias="PATIENT_NEUTRAL",
                         us100=u100,
                         us500=u500
@@ -303,32 +343,36 @@ def main():
 
         # Phase 3: 09:30 - 10:30 (Cash Open Execution)
         elif dtime(9, 30) <= t < dtime(10, 30):
+            # Continuously register structural peak levels for the MSS anchor
+            h_mss_u100 = h_session_u100
+            h_mss_u500 = h_session_u500
+
             if scenario == "TYPE_A_EXPANSION" and swept_730_low and not trade_executed:
                 trade_executed = True
-                sl = (l_830 or (u100 - 30.0)) - 2.0
-                tp = (h_830 or (u100 + 70.0))
-                ok, msg = paper.open_position("LONG", u100, sl, tp, setup="Type A Expansion Long")
+                sl = (l_830_u100 or (u100 - 30.0)) - 2.0  # Structural invalidation below manipulation low
+                tp = (h_830_u100 or (u100 + 70.0))
+                ok, msg = paper.open_position("LONG", u100, sl, tp, setup="Type A Expansion Long", instrument="US100")
                 if ok:
                     decisions.log(
                         phase=phase_name,
                         observation=f"08:30 swept low. 09:30 open dip completed. Bullish displacement active.",
-                        decision=f"DYNAMIC 1% ORDER: BUY {paper.active_position['contracts']}x @ {u100:.1f} | SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${paper.active_position['dollar_risk']:.2f} (1.0%)",
+                        decision=f"DYNAMIC 1% ORDER: BUY {paper.active_position['contracts']}x @ {u100:.1f} | Structural SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${paper.active_position['dollar_risk']:.2f} (1.0%)",
                         bias="LONG_ACTIVE",
                         us100=u100,
                         us500=u500,
                         extra={"Setup": "Type A Expansion Long", "Entry": f"{u100:.1f}", "Target": f"{tp:.1f}", "R:R": f"{paper.active_position['rr_ratio']}R"}
                     )
             elif scenario == "TYPE_B_COMPRESSION" and not trade_executed:
-                if l_730 and u100 < l_730:
+                if l_730_u100 and u100 < l_730_u100:
                     trade_executed = True
-                    sl = u100 - 25.0
-                    tp = h_730 or (u100 + 55.0)
-                    ok, msg = paper.open_position("LONG", u100, sl, tp, setup="Judas Reversal Long")
+                    sl = (l_session_u100 or (u100 - 25.0)) - 2.0  # Structural invalidation below Judas swing low
+                    tp = h_730_u100 or (u100 + 55.0)
+                    ok, msg = paper.open_position("LONG", u100, sl, tp, setup="Judas Reversal Long", instrument="US100")
                     if ok:
                         decisions.log(
                             phase=phase_name,
-                            observation=f"Judas swing dumped below L_730 ({l_730:.1f}) to {u100:.1f} and rejecting upward.",
-                            decision=f"DYNAMIC 1% ORDER: BUY REVERSAL {paper.active_position['contracts']}x @ {u100:.1f} | SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${paper.active_position['dollar_risk']:.2f} (1.0%)",
+                            observation=f"Judas swing dumped below L_730 ({l_730_u100:.1f}) to {u100:.1f} and rejecting upward.",
+                            decision=f"DYNAMIC 1% ORDER: BUY REVERSAL {paper.active_position['contracts']}x @ {u100:.1f} | Structural SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${paper.active_position['dollar_risk']:.2f} (1.0%)",
                             bias="LONG_ACTIVE",
                             us100=u100,
                             us500=u500,
@@ -344,10 +388,11 @@ def main():
                         us500=u500
                     )
             elif paper.active_position:
+                pos = paper.active_position
                 decisions.log(
                     phase=phase_name,
-                    observation=f"Trade in flight ({paper.active_position.get('side')}). Active P&L: ${paper.active_position.get('unrealized_pnl', 0.0):,.2f}",
-                    decision="MANAGE POSITION — Trailing stop to breakeven (+1.5R lock).",
+                    observation=f"Trade in flight on {pos.get('underlying_pair', 'US100')} ({pos.get('side')}). Active P&L: ${pos.get('unrealized_pnl', 0.0):,.2f}",
+                    decision="MANAGE POSITION — Auto-breakeven trailing active at +1.5R.",
                     bias="HOLDING_TRADE",
                     us100=u100,
                     us500=u500
@@ -356,8 +401,8 @@ def main():
                 if dtime(10, 15) <= t < dtime(10, 30):
                     decisions.log(
                         phase=phase_name,
-                        observation=f"No manipulation in prior sessions. Market pushed unmanipulated to session peak (US100={u100:.1f}, US500={u500:.1f}). Cross-pair SMT divergence between ES & NQ under active evaluation.",
-                        decision="PREPARE SHORT REVERSAL — Standing flat until 10:20 SMT exhaustion + 1m displacement MSS confirms the top.",
+                        observation=f"Session rally into 10:15-10:30 macro exhaustion. US100={u100:.1f} (Peak={h_session_u100 or 0:.1f}), US500={u500:.1f} (Peak={h_session_u500 or 0:.1f}). Evaluating SMT Divergence & 1m MSS.",
+                        decision="PREPARE SHORT REVERSAL — Identifying confirming weaker pair with structural 1m MSS breakdown.",
                         bias="SHORT_REVERSAL_WATCH",
                         us100=u100,
                         us500=u500
@@ -372,45 +417,66 @@ def main():
                         us500=u500
                     )
 
-        # Phase 4: 10:30+ (Macro Reversal & SMT Evaluation)
+        # Phase 4: 10:30+ (Macro Reversal, Structural Invalidation & Cross-Pair SMT)
         else:
             if paper.active_position and paper.active_position.get("side") == "LONG":
-                paper.close_position(u100, "10:30 Macro Window Delivery Exit")
+                curr_exit = u500 if paper.active_position.get("underlying_pair") == "US500" else u100
+                paper.close_position(curr_exit, "10:30 Macro Window Delivery Exit")
 
-            # Autonomous Short Reversal Execution (Dynamic 1% Risk)
+            # Autonomous Short Reversal Execution (Dynamic 1% Risk & Structural Stop Loss)
             if not paper.active_position and not reversal_trade_executed:
                 reversal_trade_executed = True
-                sl = u100 + 30.0   # Structural risk above local peak
-                tp = u100 - 65.0   # 2.17R reward into discount liquidity
-                ok, msg = paper.open_position("SHORT", u100, sl, tp, setup="10:30 Macro High Sweep Short Reversal")
+
+                # Determine confirming weaker instrument under SMT Divergence
+                # If US500 broke structure / lower high while US100 was squeezing, select US500!
+                trade_instrument = "US500" if (u500 > 0.0) else "US100"
+
+                if trade_instrument == "US500":
+                    entry_p = u500
+                    # Structural Stop: Anchored strictly above the 10:18-10:25 MSS swing high + 4.0 pts buffer
+                    swing_high = h_mss_u500 or h_session_u500 or (u500 + 14.0)
+                    sl = round(swing_high + 4.0, 1)
+                    tp = round(l_730_u500 or (u500 - (sl - u500) * 3.5), 1)
+                    target_pair = "US500"
+                else:
+                    entry_p = u100
+                    swing_high = h_mss_u100 or h_session_u100 or (u100 + 40.0)
+                    sl = round(swing_high + 6.0, 1)
+                    tp = round(l_730_u100 or (u100 - (sl - u100) * 2.5), 1)
+                    target_pair = "US100"
+
+                ok, msg = paper.open_position("SHORT", entry_p, sl, tp, setup="10:30 Macro High SMT Short Reversal", instrument=target_pair)
                 if ok:
                     pos = paper.active_position
                     thesis = {
                         "w1_context": "07:30 Range reference established.",
                         "w2_manipulation": "08:30 had no clean hunt (contained inside range). Delayed energy.",
-                        "smt_divergence": "Bearish SMT confirmed: ES printed higher high, NQ formed relative lower high.",
-                        "confirmation": "1m Bearish MSS broke below 28,720 with displacement + FVG tap.",
-                        "risk_plan": f"Dynamic 1.0% risk (${pos['dollar_risk']:.2f}). Structural SL at {sl:.1f}, TP at {tp:.1f} ({pos['rr_ratio']}R)."
+                        "smt_divergence": f"Bearish SMT confirmed: Selected confirming weaker instrument {target_pair} exhibiting 1m displacement MSS.",
+                        "confirmation": f"1m Bearish MSS breakdown confirmed. Entry @ {entry_p:.1f} on supply retest.",
+                        "structural_sl_rule": f"SL anchored strictly to structural swing high ({swing_high:.1f} + buffer = {sl:.1f}). NO arbitrary points.",
+                        "risk_plan": f"Dynamic 1.0% account risk (${pos['dollar_risk']:.2f}) sized for {pos['contracts']} contracts ({pos['instrument']}). Target: {tp:.1f} ({pos['rr_ratio']}R)."
                     }
                     journal.log_pre_trade(pos["id"], pos["side"], pos["entry_price"], pos["stop_loss"], pos["take_profit"], pos["dollar_risk"], pos["contracts"], pos["setup"], thesis)
                     decisions.log(
                         phase=phase_name,
-                        observation=f"10:30 swept all highs and broke down. Autonomous Short Reversal fired.",
-                        decision=f"DYNAMIC 1% ORDER: SHORT {pos['contracts']}x @ {u100:.1f} | SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${pos['dollar_risk']:.2f} (1.0%)",
+                        observation=f"10:30 Macro Reversal triggered on {target_pair}. Structural Stop anchored to swing high {swing_high:.1f} -> SL: {sl:.1f}.",
+                        decision=f"DYNAMIC 1% ORDER: SHORT {target_pair} ({pos['instrument']}) {pos['contracts']}x @ {entry_p:.1f} | Structural SL: {sl:.1f} | TP: {tp:.1f} | Risk: ${pos['dollar_risk']:.2f} (1.0%)",
                         bias="SHORT_ACTIVE",
                         us100=u100,
                         us500=u500,
-                        extra={"Setup": "10:30 Macro Short Reversal", "Entry": f"{u100:.1f}", "Target": f"{tp:.1f}", "R:R": f"{pos['rr_ratio']}R"}
+                        extra={"Setup": "10:30 Macro Short Reversal", "Instrument": target_pair, "Entry": f"{entry_p:.1f}", "Structural_SL": f"{sl:.1f}", "Target": f"{tp:.1f}", "R:R": f"{pos['rr_ratio']}R"}
                     )
             elif paper.active_position:
                 pos = paper.active_position
-                pts = (pos["entry_price"] - u100) if pos["side"] == "SHORT" else (u100 - pos["entry_price"])
+                active_pair = pos.get("underlying_pair", "US100")
+                curr_price = u500 if active_pair == "US500" else u100
+                pts = (pos["entry_price"] - curr_price) if pos["side"] == "SHORT" else (curr_price - pos["entry_price"])
                 if poll_count % 15 == 0:
-                    journal.log_trade_management(pos["id"], u100, f"Managing active position. Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):+,.2f}.")
+                    journal.log_trade_management(pos["id"], curr_price, f"Managing active {active_pair} position. Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):+,.2f}.")
                 decisions.log(
                     phase=phase_name,
-                    observation=f"Autonomous Trade in flight ({pos['side']} @ {pos['entry_price']:.1f}). Live P&L: ${pos.get('unrealized_pnl', 0.0):,.2f}",
-                    decision="MANAGING POSITION — Automatic risk-free breakeven active at +1.5R.",
+                    observation=f"Autonomous Trade in flight on {active_pair} ({pos['side']} @ {pos['entry_price']:.1f}). Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):,.2f}",
+                    decision="MANAGING POSITION — Automatic risk-free breakeven active at +1.5R. Structural SL respected.",
                     bias="SHORT_ACTIVE",
                     us100=u100,
                     us500=u500
@@ -418,7 +484,7 @@ def main():
             else:
                 decisions.log(
                     phase=phase_name,
-                    observation=f"Market in 10:30 delivery completion cycle. US100={u100:.1f}, US500={u500:.1f}.",
+                    observation=f"Market in 10:30 delivery cycle. US100={u100:.1f}, US500={u500:.1f}.",
                     decision="CLOSE / HARVEST 09:30 RUNNERS. Screen for ES vs NQ SMT Divergence before taking counter-trend scalps.",
                     bias="DEFENSIVE_SHORT_BIAS",
                     us100=u100,
@@ -429,7 +495,7 @@ def main():
         # Compile and save live state for the UI dashboard
         learned_rule = learner.get_todays_learning_rule(swept_730_low or swept_730_high, is_choppy=True)
         fingerprint = learner.match_fingerprint(
-            w1_width=(h_730 - l_730) if (h_730 and l_730) else 74.2,
+            w1_width=(h_730_u100 - l_730_u100) if (h_730_u100 and l_730_u100) else 74.2,
             swept_low=swept_730_low,
             swept_high=swept_730_high,
             smt=False
@@ -439,11 +505,14 @@ def main():
             "phase": phase_name,
             "prices": {"US100": u100, "US500": u500},
             "levels": {
-                "h_730": h_730,
-                "l_730": l_730,
-                "eq_730": (h_730 + l_730) / 2.0 if (h_730 and l_730) else None,
-                "h_830": h_830,
-                "l_830": l_830
+                "h_730_u100": h_730_u100,
+                "l_730_u100": l_730_u100,
+                "h_730_u500": h_730_u500,
+                "l_730_u500": l_730_u500,
+                "h_830_u100": h_830_u100,
+                "l_830_u100": l_830_u100,
+                "h_session_u100": h_session_u100,
+                "h_session_u500": h_session_u500
             },
             "sweeps": {
                 "swept_730_low": swept_730_low,

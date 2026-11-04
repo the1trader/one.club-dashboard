@@ -60,36 +60,44 @@
     </header>
 
     <!-- Top KPI Row -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
       <!-- Live Price US100 -->
-      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 relative overflow-hidden">
-        <div class="text-xs text-gray-400 font-medium">LIVE NAS100 (NQ CFD)</div>
-        <div id="price-us100" class="text-2xl md:text-3xl font-mono font-bold text-white mt-1">28,244.4</div>
-        <div class="text-xs text-emerald-400 font-mono mt-1 flex items-center gap-1">
-          <span>▲ +0.55%</span>
-          <span class="text-gray-500 text-[12px]">• Live Quote Feed</span>
+      <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800 relative overflow-hidden">
+        <div class="text-[11px] text-gray-400 font-medium">LIVE NAS100 (NQ CFD)</div>
+        <div id="price-us100" class="text-xl md:text-2xl font-mono font-bold text-white mt-1">28,472.5</div>
+        <div class="text-[11px] text-emerald-400 font-mono mt-0.5 flex items-center gap-1">
+          <span>▲ Live NQ Feed</span>
+        </div>
+      </div>
+
+      <!-- Live Price US500 -->
+      <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800 relative overflow-hidden">
+        <div class="text-[11px] text-gray-400 font-medium">LIVE US500 (ES CFD)</div>
+        <div id="price-us500" class="text-xl md:text-2xl font-mono font-bold text-cyan-400 mt-1">7,685.7</div>
+        <div class="text-[11px] text-cyan-400 font-mono mt-0.5 flex items-center gap-1">
+          <span>▲ Live ES Feed</span>
         </div>
       </div>
 
       <!-- Demo Balance -->
-      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
-        <div class="text-xs text-gray-400 font-medium">REAL LIVE PAPER BALANCE</div>
-        <div id="paper-balance" class="text-2xl md:text-3xl font-mono font-bold text-white mt-1">$49,460.00</div>
-        <div id="paper-net-pnl" class="text-xs text-red-400 font-mono mt-1">-$540.00 (-1.1%) Net P&L</div>
+      <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800">
+        <div class="text-[11px] text-gray-400 font-medium">REAL LIVE PAPER BALANCE</div>
+        <div id="paper-balance" class="text-xl md:text-2xl font-mono font-bold text-white mt-1">$48,980.00</div>
+        <div id="paper-net-pnl" class="text-[11px] text-red-400 font-mono mt-0.5">-$1,020.00 (-2.0%) Net P&L</div>
       </div>
 
       <!-- Win Rate -->
-      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
-        <div class="text-xs text-gray-400 font-medium">LIVE TAPE WIN RATE</div>
-        <div id="paper-win-rate" class="text-2xl md:text-3xl font-mono font-bold text-cyan-400 mt-1">66.7%</div>
-        <div id="paper-win-loss" class="text-xs text-gray-400 font-mono mt-1">2 Wins / 1 Loss (Real Live Trades)</div>
+      <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800">
+        <div class="text-[11px] text-gray-400 font-medium">LIVE TAPE WIN RATE</div>
+        <div id="paper-win-rate" class="text-xl md:text-2xl font-mono font-bold text-cyan-400 mt-1">50.0%</div>
+        <div id="paper-win-loss" class="text-[11px] text-gray-400 font-mono mt-0.5">2 Wins / 2 Losses (Real)</div>
       </div>
 
       <!-- Current Session Phase -->
-      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
-        <div class="text-xs text-gray-400 font-medium">ACTIVE TIME WINDOW</div>
-        <div id="active-window-name" class="text-sm md:text-base font-bold text-purple-400 mt-1.5 truncate">Window 4: Macro Reversal</div>
-        <div class="text-xs text-purple-400/80 font-mono mt-1">10:30+ AM EST Reversal Gate</div>
+      <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800 col-span-2 md:col-span-1">
+        <div class="text-[11px] text-gray-400 font-medium">ACTIVE TIME WINDOW</div>
+        <div id="active-window-name" class="text-sm font-bold text-purple-400 mt-1 truncate">Window 4: Macro Reversal</div>
+        <div class="text-[11px] text-purple-400/80 font-mono mt-0.5">SMT Divergence Active</div>
       </div>
     </div>
 
@@ -416,7 +424,12 @@
       if (data.ny_time) document.getElementById("ny-time-display").innerText = data.ny_time;
       if (data.prices && data.prices.US100 > 0) {
         currentLivePrice = data.prices.US100;
-        document.getElementById("price-us100").innerText = currentLivePrice.toLocaleString('en-US', { minimumFractionDigits: 1 });
+        const p100El = document.getElementById("price-us100");
+        if (p100El) p100El.innerText = currentLivePrice.toLocaleString('en-US', { minimumFractionDigits: 1 });
+      }
+      if (data.prices && data.prices.US500 > 0) {
+        const p500El = document.getElementById("price-us500");
+        if (p500El) p500El.innerText = data.prices.US500.toLocaleString('en-US', { minimumFractionDigits: 1 });
       }
       if (data.phase) document.getElementById("active-window-name").innerText = data.phase;
       if (data.paper_account) {
