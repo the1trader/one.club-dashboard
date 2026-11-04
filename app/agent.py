@@ -233,45 +233,63 @@ def main():
             poll_count += 1
             continue
 
-        phase_name = "Window 4: 10:30+ Macro Reversal / Delivery"
-        agent_signal = {
-            "side": "SHORT",
-            "bias": "SHORT_REVERSAL",
-            "setup": "10:30 Macro High SMT Reversal",
-            "instrument": "US500" if u500 > 0 else "US100",
-            "entry": u500 if u500 > 0 else u100,
-            "sl": (h_session_u500 or 7708.8) + 4.0 if u500 > 0 else (h_session_u100 or 28684.0) + 6.0,
-            "tp": (l_session_u500 or 7621.9) if u500 > 0 else (l_session_u100 or 28350.0),
-            "reason": "Tracking structural swing high. SL anchored strictly to MSS high + buffer."
-        }
-
+        # Define the 7 Explicit Institutional Time Windows & Cutoff Gates (NY EST)
         if dtime(7, 30) <= t < dtime(8, 30):
-            phase_name = "Window 1: 07:30 - 08:30 Range Definition"
+            phase_name = "Window 1: 07:30 - 08:30 Range Blueprint"
             agent_signal = {"side": "FLAT", "bias": "WAIT", "reason": "Establishing baseline range across US100 and US500."}
         elif dtime(8, 30) <= t < dtime(9, 30):
-            phase_name = "Window 2: 08:30 Manipulation News"
+            phase_name = "Window 2: 08:30 - 09:30 News Manipulation"
             agent_signal = {"side": "FLAT", "bias": "WAIT_FOR_SWEEP", "reason": "Evaluating whether 08:30 sweeps liquidity or compresses."}
-        elif dtime(9, 30) <= t < dtime(10, 15):
-            phase_name = "Window 3: 09:30 Cash Open Execution"
+        elif dtime(9, 30) <= t < dtime(10, 30):
+            phase_name = "Window 3: 09:30 - 10:30 Cash Open Execution"
             agent_signal = {
                 "side": "STANDBY",
-                "bias": "WAITING_FOR_SWEEP",
+                "bias": "CASH_OPEN_ACTIVE",
                 "setup": "Cash Open Structure Formation",
                 "entry": u100,
                 "sl": u100 - 35.0,
                 "tp": u100 + 70.0,
                 "reason": "Observing cash open orderflow. Recording structural 1m swing peaks and troughs."
             }
-        elif dtime(10, 15) <= t < dtime(10, 30):
-            phase_name = "Window 4 Prep: 10:15 - 10:30 SMT Macro Reversal Gate"
+        elif dtime(10, 30) <= t < dtime(11, 0):
+            phase_name = "Window 4: 10:30 - 11:00 SMT Macro Reversal"
             agent_signal = {
                 "side": "SHORT",
-                "bias": "SHORT_REVERSAL_WATCH",
-                "setup": "10:15-10:30 Macro High SMT Exhaustion",
+                "bias": "SHORT_REVERSAL",
+                "setup": "10:30 Macro High SMT Reversal",
+                "instrument": "US500" if u500 > 0 else "US100",
                 "entry": u500 if u500 > 0 else u100,
-                "sl": (h_session_u500 or u500) + 4.0 if u500 > 0 else (h_session_u100 or u100) + 6.0,
-                "tp": (l_session_u500 or 7621.9) if u500 > 0 else 28420.0,
-                "reason": "Cross-pair SMT evaluation: Monitoring which index breaks 1m MSS first. Structural SL anchored to swing high."
+                "sl": (h_session_u500 or 7708.8) + 4.0 if u500 > 0 else (h_session_u100 or 28684.0) + 6.0,
+                "tp": (l_session_u500 or 7621.9) if u500 > 0 else (l_session_u100 or 28350.0),
+                "reason": "10:30 Macro reversal window active. FVG supply retest tap trigger."
+            }
+        elif dtime(11, 0) <= t < dtime(11, 30):
+            phase_name = "Phase 5: 11:00 AM Hard Signal Cutoff (AM Closed)"
+            agent_signal = {
+                "side": "STANDBY",
+                "bias": "AM_SESSION_CLOSED",
+                "reason": "11:00 AM EST Hard Cutoff Gate reached. ZERO new trade signals permitted. Managing existing open positions only."
+            }
+        elif dtime(11, 30) <= t < dtime(13, 15):
+            phase_name = "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone"
+            agent_signal = {
+                "side": "FLAT",
+                "bias": "LUNCH_LOCKOUT",
+                "reason": "11:30 AM London Close & 12:00-13:00 NY Lunch Dead Zone. 100% Cash Standby. No new entries."
+            }
+        elif dtime(13, 15) <= t < dtime(15, 0):
+            phase_name = "Window 5: 13:15 - 15:00 NY PM Session"
+            agent_signal = {
+                "side": "STANDBY",
+                "bias": "PM_SESSION_WATCH",
+                "reason": "13:30-14:30 PM Silver Bullet & 13:50 Macro evaluation."
+            }
+        else:
+            phase_name = "Phase 7: Out of Session / Market Settlement"
+            agent_signal = {
+                "side": "FLAT",
+                "bias": "SESSION_CLOSED",
+                "reason": "Outside active NY operating killzones."
             }
 
         # Phase 1: 07:30 - 08:30 (Blueprint Range)
@@ -417,8 +435,8 @@ def main():
                         us500=u500
                     )
 
-        # Phase 4: 10:30+ (Macro Reversal, Structural Invalidation & Cross-Pair SMT)
-        else:
+        # Phase 4: 10:30 - 11:00 (Macro Reversal, Structural Invalidation & Cross-Pair SMT)
+        elif dtime(10, 30) <= t < dtime(11, 0):
             if paper.active_position and paper.active_position.get("side") == "LONG":
                 curr_exit = u500 if paper.active_position.get("underlying_pair") == "US500" else u100
                 paper.close_position(curr_exit, "10:30 Macro Window Delivery Exit")
@@ -431,24 +449,16 @@ def main():
                     entry_p = u500
                     swing_high = h_mss_u500 or h_session_u500 or (u500 + 14.0)
                     sl = round(swing_high + 4.0, 1)
-                    # T1: Opposing session liquidity / 2.2R (75% Core Bank)
                     tp1 = round(entry_p - (sl - entry_p) * 2.2, 1)
-                    # T2: HTF Draw on Liquidity (25% Runner to pre-market low / 4.0R)
                     tp2 = round(l_730_u500 or (entry_p - (sl - entry_p) * 4.0), 1)
                     target_pair = "US500"
-                    fvg_zone_low = swing_high - 16.0
-                    fvg_zone_high = swing_high - 4.0
                 else:
                     entry_p = u100
                     swing_high = h_mss_u100 or h_session_u100 or (u100 + 40.0)
                     sl = round(swing_high + 6.0, 1)
-                    # T1: 2.2R (75% Core Bank)
                     tp1 = round(entry_p - (sl - entry_p) * 2.2, 1)
-                    # T2: Pre-market low 28,132.4 / 4.0R (25% Runner)
                     tp2 = round(l_730_u100 or 28132.4, 1)
                     target_pair = "US100"
-                    fvg_zone_low = swing_high - 150.0
-                    fvg_zone_high = swing_high - 80.0
 
                 reversal_trade_executed = True
                 ok, msg = paper.open_position(
@@ -493,16 +503,80 @@ def main():
                     us500=u500,
                     extra={"T1_Status": t1_status, "Active_Contracts": f"{pos.get('active_contracts', pos['contracts'])}x"}
                 )
+
+        # Phase 5: 11:00 - 11:30 (Hard Signal Cutoff Gate — Manage Active Trades ONLY, Zero New Signals)
+        elif dtime(11, 0) <= t < dtime(11, 30):
+            if paper.active_position:
+                pos = paper.active_position
+                active_pair = pos.get("underlying_pair", "US100")
+                curr_price = u500 if active_pair == "US500" else u100
+                pts = (pos["entry_price"] - curr_price) if pos["side"] == "SHORT" else (curr_price - pos["entry_price"])
+                t1_status = "T1 HIT (75% Banked, Runner @ BE)" if pos.get("t1_hit") else f"Target 1: {pos.get('take_profit_1', 0.0):.1f}"
+                decisions.log(
+                    phase=phase_name,
+                    observation=f"Managing active trade into 11:00 AM cutoff ({active_pair} @ {pos['entry_price']:.1f}). Live Points: {pts:+.1f} pts | P&L: ${pos.get('unrealized_pnl', 0.0):,.2f}",
+                    decision=f"CUTOFF MANAGEMENT — [{t1_status}]. No new entries allowed. Structural SL: {pos.get('stop_loss', 0.0):.1f}.",
+                    bias="MANAGING_AM_TRADE",
+                    us100=u100,
+                    us500=u500
+                )
             else:
                 decisions.log(
                     phase=phase_name,
-                    observation=f"Market in 10:30 delivery cycle. US100={u100:.1f}, US500={u500:.1f}.",
-                    decision="CLOSE / HARVEST 09:30 RUNNERS. Screen for ES vs NQ SMT Divergence before taking counter-trend scalps.",
-                    bias="DEFENSIVE_SHORT_BIAS",
+                    observation="11:00 AM EST Hard Cutoff Gate reached. Morning execution cycle complete.",
+                    decision="STANDBY — AM Session Closed. Zero new trade signals permitted. Avoiding late-morning chop.",
+                    bias="AM_SESSION_CLOSED",
                     us100=u100,
-                    us500=u500,
-                    extra={"SMT_Check": "Correlating NQ swing highs against ES", "Risk": "No chase entries"}
+                    us500=u500
                 )
+
+        # Phase 6: 11:30 - 13:15 (London Close & Lunch Dead Zone — MANDATORY FLATTEN & FULL LOCKOUT)
+        elif dtime(11, 30) <= t < dtime(13, 15):
+            if paper.active_position:
+                curr_exit = u500 if paper.active_position.get("underlying_pair") == "US500" else u100
+                paper.close_position(curr_exit, "11:30 AM London Close Mandatory Exit (No Lunch Exposure)")
+                decisions.log(
+                    phase=phase_name,
+                    observation="11:30 AM London Close reached. European liquidity flattening out into NY lunch.",
+                    decision="MANDATORY FLATTEN: Closed open position at market. 100% cash protection.",
+                    bias="LUNCH_LOCKOUT",
+                    us100=u100,
+                    us500=u500
+                )
+            else:
+                decisions.log(
+                    phase=phase_name,
+                    observation=f"Market in 11:30 London Close & NY Lunch Dead Zone (US100={u100:.1f}, US500={u500:.1f}).",
+                    decision="LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+                    bias="LUNCH_LOCKOUT",
+                    us100=u100,
+                    us500=u500
+                )
+
+        # Phase 7: 13:15 - 15:00 (NY PM Session — PM Silver Bullet & 13:50 Macro)
+        elif dtime(13, 15) <= t < dtime(15, 0):
+            decisions.log(
+                phase=phase_name,
+                observation=f"NY PM Session active. Evaluating post-lunch orderflow (US100={u100:.1f}, US500={u500:.1f}).",
+                decision="STANDBY — Monitoring PM Silver Bullet (13:30-14:30) and 13:50 Macro for clean FVG continuation.",
+                bias="PM_SESSION_WATCH",
+                us100=u100,
+                us500=u500
+            )
+
+        # Phase 8: 15:00+ (Market Settlement & Close)
+        else:
+            if paper.active_position:
+                curr_exit = u500 if paper.active_position.get("underlying_pair") == "US500" else u100
+                paper.close_position(curr_exit, "15:00 Market Settlement Mandatory Close")
+            decisions.log(
+                phase=phase_name,
+                observation=f"Outside NY operating session (US100={u100:.1f}, US500={u500:.1f}).",
+                decision="STANDBY — Terminal Flat. Session complete.",
+                bias="SESSION_CLOSED",
+                us100=u100,
+                us500=u500
+            )
 
         # Compile and save live state for the UI dashboard
         learned_rule = learner.get_todays_learning_rule(swept_730_low or swept_730_high, is_choppy=True)

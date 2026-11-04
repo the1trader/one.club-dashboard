@@ -335,21 +335,21 @@ class PaperAccount:
         # Automatically log post-trade review retrospective in the professional journal
         if self.journal:
             sl_dist = abs(pos["entry_price"] - pos["stop_loss"]) if pos.get("stop_loss") else 30.0
-            rr_achieved = round(pts / sl_dist, 2) if sl_dist > 0 else 0.0
+            rr_achieved = round(final_pts / sl_dist, 2) if sl_dist > 0 else 0.0
 
-            if "TAKE_PROFIT" in reason or (pnl > 0 and rr_achieved >= 1.8):
+            if "TAKE_PROFIT" in reason or (total_pnl > 0 and rr_achieved >= 1.8):
                 grade = "A+"
-                well = f"Flawless execution. Hit complete profit target ({pts:+.1f} pts / {rr_achieved}R) without violating risk rules."
-                improve = "Assess HTF daily context to see if leaving a 10% runner would capture extended multi-hundred point continuation."
+                well = f"Flawless execution. Hit complete profit target ({final_pts:+.1f} pts / {rr_achieved}R) without violating risk rules."
+                improve = "Assess HTF daily context to see if leaving a runner would capture extended multi-hundred point continuation."
                 lesson = "Patience at key macro liquidity inflection points delivers maximum risk-adjusted expectancy."
-            elif pnl > 0:
+            elif total_pnl > 0:
                 grade = "A"
-                well = f"Disciplined trade management. Breakeven trailing stop triggered ({pts:+.1f} pts / ${pnl:,.2f}), locking in profit and eliminating downside risk."
+                well = f"Disciplined trade management. Banked Target 1 and protected runner at breakeven (+${total_pnl:,.2f}), eliminating downside risk."
                 improve = "Review lower timeframe order flow during the retracement to see if the exit was optimal."
                 lesson = "Rule #1 is always protect capital. A scratch or small profit preserves mental clarity for the next A+ setup."
             else:
                 grade = "B"
-                well = f"Honored the predetermined structural stop loss ({pts:.1f} pts / ${pnl:,.2f}) immediately without widening stops or revenge trading."
+                well = f"Honored the predetermined structural stop loss ({final_pts:.1f} pts / ${total_pnl:,.2f}) immediately without widening stops or revenge trading."
                 improve = "Verify whether SMT divergence or 1m MSS displacement had proper volume confirmation prior to entry."
                 lesson = "Losses are standard overhead in trading. Taking 1.0% dynamic risk ensures mathematical longevity and survivability."
 
