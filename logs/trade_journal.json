@@ -1,5 +1,1417 @@
 [
   {
+    "trade_id": "LIVE-006",
+    "date": "2026-11-04",
+    "entry_time": "12:12:05 EST",
+    "exit_time": "12:20:16 EST",
+    "setup": "10:30 Macro SMT FVG Retest Short (75/25 Exit)",
+    "instrument": "US100 (NQ)",
+    "side": "SHORT",
+    "contracts": 2,
+    "entry_price": 7704.5,
+    "stop_loss": 7708.5,
+    "take_profit": 7695.7,
+    "dollar_risk": 400.0,
+    "risk_pct": 1.0,
+    "pre_trade_thesis": {
+      "w1_context": "07:30 Range reference established.",
+      "w2_manipulation": "08:30 had no clean hunt (contained inside range). Delayed energy.",
+      "smt_divergence": "Bearish SMT confirmed: Selected confirming weaker instrument US500 exhibiting 1m displacement MSS.",
+      "fvg_retest_tap": "Executed on supply block retest @ 7704.5. High remained unchallenged.",
+      "structural_sl_rule": "SL anchored strictly to structural swing high (7704.5 + buffer = 7708.5). NO arbitrary points.",
+      "two_tier_exit_plan": "Dynamic 1.0% risk ($400.00) sized for 2x ES_FUTURES (Core: 1x @ T1 7695.7 | Runner: 1x @ T2 7688.5)."
+    },
+    "in_trade_logs": [
+      {
+        "time": "12:12:05 EST",
+        "price": 7704.5,
+        "pts": "0.0",
+        "note": "Executed SHORT order. Stop Loss set structurally at 7708.5, TP at 7695.7."
+      },
+      {
+        "time": "12:12:07 EST",
+        "price": 7704.9,
+        "pts": "-0.4",
+        "note": "Managing active US500 position. Live Points: -0.4 pts | P&L: $-40.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:10 EST",
+        "price": 7704.0,
+        "pts": "+0.5",
+        "note": "Managing active US500 position. Live Points: +0.5 pts | P&L: $+50.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:12 EST",
+        "price": 7704.2,
+        "pts": "+0.3",
+        "note": "Managing active US500 position. Live Points: +0.3 pts | P&L: $+30.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:14 EST",
+        "price": 7704.5,
+        "pts": "+0.0",
+        "note": "Managing active US500 position. Live Points: +0.0 pts | P&L: $+0.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:17 EST",
+        "price": 7703.7,
+        "pts": "+0.8",
+        "note": "Managing active US500 position. Live Points: +0.8 pts | P&L: $+80.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:19 EST",
+        "price": 7703.7,
+        "pts": "+0.8",
+        "note": "Managing active US500 position. Live Points: +0.8 pts | P&L: $+80.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:21 EST",
+        "price": 7703.6,
+        "pts": "+0.9",
+        "note": "Managing active US500 position. Live Points: +0.9 pts | P&L: $+90.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:24 EST",
+        "price": 7703.6,
+        "pts": "+0.9",
+        "note": "Managing active US500 position. Live Points: +0.9 pts | P&L: $+90.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:26 EST",
+        "price": 7702.8,
+        "pts": "+1.7",
+        "note": "Managing active US500 position. Live Points: +1.7 pts | P&L: $+170.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:29 EST",
+        "price": 7702.1,
+        "pts": "+2.4",
+        "note": "Managing active US500 position. Live Points: +2.4 pts | P&L: $+240.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:31 EST",
+        "price": 7701.6,
+        "pts": "+2.9",
+        "note": "Managing active US500 position. Live Points: +2.9 pts | P&L: $+290.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:33 EST",
+        "price": 7701.4,
+        "pts": "+3.1",
+        "note": "Managing active US500 position. Live Points: +3.1 pts | P&L: $+310.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:36 EST",
+        "price": 7700.6,
+        "pts": "+3.9",
+        "note": "Managing active US500 position. Live Points: +3.9 pts | P&L: $+390.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:38 EST",
+        "price": 7699.6,
+        "pts": "+4.9",
+        "note": "Managing active US500 position. Live Points: +4.9 pts | P&L: $+490.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:41 EST",
+        "price": 7699.6,
+        "pts": "+4.9",
+        "note": "Managing active US500 position. Live Points: +4.9 pts | P&L: $+490.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:43 EST",
+        "price": 7699.5,
+        "pts": "+5.0",
+        "note": "Managing active US500 position. Live Points: +5.0 pts | P&L: $+500.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:45 EST",
+        "price": 7700.2,
+        "pts": "+4.3",
+        "note": "Managing active US500 position. Live Points: +4.3 pts | P&L: $+430.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:48 EST",
+        "price": 7699.1,
+        "pts": "+5.4",
+        "note": "Managing active US500 position. Live Points: +5.4 pts | P&L: $+540.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:50 EST",
+        "price": 7698.8,
+        "pts": "+5.7",
+        "note": "Managing active US500 position. Live Points: +5.7 pts | P&L: $+570.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:53 EST",
+        "price": 7699.4,
+        "pts": "+5.1",
+        "note": "Managing active US500 position. Live Points: +5.1 pts | P&L: $+510.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:55 EST",
+        "price": 7699.0,
+        "pts": "+5.5",
+        "note": "Managing active US500 position. Live Points: +5.5 pts | P&L: $+550.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:12:57 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:00 EST",
+        "price": 7698.0,
+        "pts": "+6.5",
+        "note": "Managing active US500 position. Live Points: +6.5 pts | P&L: $+650.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:02 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:04 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:07 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:09 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:11 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:14 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:16 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:19 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:21 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:23 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:25 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:28 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:30 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:32 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:35 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:37 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:39 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:42 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:44 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:46 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:49 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:51 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:53 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:56 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:13:58 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:00 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:03 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:05 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:07 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:10 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:12 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:14 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:16 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:19 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:21 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:23 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:26 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:28 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:31 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:33 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:35 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:37 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:40 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:42 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:45 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:47 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:49 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:52 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:54 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:56 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:14:59 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:01 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:03 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:06 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:08 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:10 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:13 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:15 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:18 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:20 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:22 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:25 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:27 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:29 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:32 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:34 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:36 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:39 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:41 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:43 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:46 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:48 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:50 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:53 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:55 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:15:57 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:00 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:02 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:04 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:07 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:09 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:11 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:14 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:16 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:19 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:21 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:23 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:26 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:28 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:30 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:33 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:35 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:37 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:40 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:42 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:44 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:47 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:49 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:51 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:54 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:56 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:16:58 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:01 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:03 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:06 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:08 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:10 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:13 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:15 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:17 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:20 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:22 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:24 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:27 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:29 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:31 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:34 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:36 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:38 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:41 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:43 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:45 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:48 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:50 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:52 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:55 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:57 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:17:59 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:02 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:04 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:06 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:09 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:11 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:13 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:16 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:18 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:20 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:23 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:25 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:27 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:30 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:32 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:34 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:37 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:39 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:41 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:44 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:46 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:48 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:51 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:53 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:55 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:18:58 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:00 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:02 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:05 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:07 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:09 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:12 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:14 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:16 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:19 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:21 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:23 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:26 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:28 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:30 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:33 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:35 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:37 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:40 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:42 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:44 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:47 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:49 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:51 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:54 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:56 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:19:58 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:20:01 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:20:03 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:20:05 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:20:08 EST",
+        "price": 7698.1,
+        "pts": "+6.4",
+        "note": "Managing active US500 position. Live Points: +6.4 pts | P&L: $+640.00 | Status: Target 1: 7695.7."
+      },
+      {
+        "time": "12:20:16 EST",
+        "price": 7695.2,
+        "pts": "+9.3",
+        "note": "\ud83c\udfaf TARGET 1 HIT! Banked 75% core position (1x) for +$440.00 (+8.8 pts). Stop Loss moved to Breakeven (7703.5) on remaining 1x runner. Trade is 100% Risk-Free."
+      }
+    ],
+    "exit_review": {
+      "exit_price": 7695.2,
+      "points": 9.3,
+      "pnl": 905.0,
+      "rr_achieved": 2.33,
+      "status": "WIN",
+      "grade": "A+",
+      "reason": "11:30 AM London Close Mandatory Exit (No Lunch Exposure)",
+      "what_went_well": "Disciplined 75/25 execution. Banked 75% core (+8.8 pts / +) at Target 1, moved stop to Breakeven, and safely flattened entire position at London Close.",
+      "what_to_improve": "Continue respecting the 11:30 AM London Close boundary without holding through midday chop.",
+      "key_lesson": "Protecting booked gains before the lunch dead zone preserves psychological capital and mathematical edge."
+    }
+  },
+  {
+    "trade_id": "LIVE-005",
+    "date": "2026-11-04",
+    "entry_time": "11:09:27 EST",
+    "exit_time": "11:10:02 EST",
+    "setup": "10:30 Macro High SMT Short Reversal",
+    "instrument": "US100 (NQ)",
+    "side": "SHORT",
+    "contracts": 2,
+    "entry_price": 7678.3,
+    "stop_loss": 7682.3,
+    "take_profit": 7664.3,
+    "dollar_risk": 400.0,
+    "risk_pct": 1.0,
+    "pre_trade_thesis": {
+      "w1_context": "07:30 Range reference established.",
+      "w2_manipulation": "08:30 had no clean hunt (contained inside range). Delayed energy.",
+      "smt_divergence": "Bearish SMT confirmed: Selected confirming weaker instrument US500 exhibiting 1m displacement MSS.",
+      "confirmation": "1m Bearish MSS breakdown confirmed. Entry @ 7678.3 on supply retest.",
+      "structural_sl_rule": "SL anchored strictly to structural swing high (7678.3 + buffer = 7682.3). NO arbitrary points.",
+      "risk_plan": "Dynamic 1.0% account risk ($400.00) sized for 2 contracts (ES_FUTURES). Target: 7664.3 (3.5R)."
+    },
+    "in_trade_logs": [
+      {
+        "time": "11:09:27 EST",
+        "price": 7678.3,
+        "pts": "0.0",
+        "note": "Executed SHORT order. Stop Loss set structurally at 7682.3, TP at 7664.3."
+      },
+      {
+        "time": "11:09:29 EST",
+        "price": 7678.9,
+        "pts": "-0.6",
+        "note": "Managing active US500 position. Live Points: -0.6 pts | P&L: $-60.00."
+      },
+      {
+        "time": "11:09:31 EST",
+        "price": 7679.1,
+        "pts": "-0.8",
+        "note": "Managing active US500 position. Live Points: -0.8 pts | P&L: $-80.00."
+      },
+      {
+        "time": "11:09:34 EST",
+        "price": 7678.9,
+        "pts": "-0.6",
+        "note": "Managing active US500 position. Live Points: -0.6 pts | P&L: $-60.00."
+      },
+      {
+        "time": "11:09:36 EST",
+        "price": 7678.6,
+        "pts": "-0.3",
+        "note": "Managing active US500 position. Live Points: -0.3 pts | P&L: $-30.00."
+      },
+      {
+        "time": "11:09:38 EST",
+        "price": 7678.9,
+        "pts": "-0.6",
+        "note": "Managing active US500 position. Live Points: -0.6 pts | P&L: $-60.00."
+      },
+      {
+        "time": "11:09:41 EST",
+        "price": 7678.1,
+        "pts": "+0.2",
+        "note": "Managing active US500 position. Live Points: +0.2 pts | P&L: $+20.00."
+      },
+      {
+        "time": "11:09:43 EST",
+        "price": 7677.9,
+        "pts": "+0.4",
+        "note": "Managing active US500 position. Live Points: +0.4 pts | P&L: $+40.00."
+      },
+      {
+        "time": "11:09:45 EST",
+        "price": 7678.4,
+        "pts": "-0.1",
+        "note": "Managing active US500 position. Live Points: -0.1 pts | P&L: $-10.00."
+      },
+      {
+        "time": "11:09:48 EST",
+        "price": 7677.9,
+        "pts": "+0.4",
+        "note": "Managing active US500 position. Live Points: +0.4 pts | P&L: $+40.00."
+      },
+      {
+        "time": "11:09:50 EST",
+        "price": 7680.1,
+        "pts": "-1.8",
+        "note": "Managing active US500 position. Live Points: -1.8 pts | P&L: $-180.00."
+      },
+      {
+        "time": "11:09:52 EST",
+        "price": 7680.9,
+        "pts": "-2.6",
+        "note": "Managing active US500 position. Live Points: -2.6 pts | P&L: $-260.00."
+      },
+      {
+        "time": "11:09:55 EST",
+        "price": 7681.4,
+        "pts": "-3.1",
+        "note": "Managing active US500 position. Live Points: -3.1 pts | P&L: $-310.00."
+      },
+      {
+        "time": "11:09:57 EST",
+        "price": 7681.2,
+        "pts": "-2.9",
+        "note": "Managing active US500 position. Live Points: -2.9 pts | P&L: $-290.00."
+      },
+      {
+        "time": "11:09:59 EST",
+        "price": 7681.1,
+        "pts": "-2.8",
+        "note": "Managing active US500 position. Live Points: -2.8 pts | P&L: $-280.00."
+      }
+    ],
+    "exit_review": {
+      "exit_price": 7682.3,
+      "points": -4.0,
+      "pnl": -160.0,
+      "rr_achieved": -1.0,
+      "status": "LOSS",
+      "grade": "B",
+      "reason": "STOP_LOSS_HIT",
+      "what_went_well": "Honored the predetermined structural stop loss (-4.0 pts / $-400.00) immediately without widening stops or revenge trading.",
+      "what_to_improve": "Verify whether SMT divergence or 1m MSS displacement had proper volume confirmation prior to entry.",
+      "key_lesson": "Losses are standard overhead in trading. Taking 1.0% dynamic risk ensures mathematical longevity and survivability."
+    }
+  },
+  {
     "trade_id": "LIVE-004",
     "date": "2026-11-04",
     "entry_time": "10:30:02 EST",

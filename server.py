@@ -22,6 +22,8 @@ class DashboardHandler(SimpleHTTPRequestHandler):
         # API Endpoints
         if self.path == "/api/trades":
             self._send_json(db.get_live_trades())
+        elif self.path == "/api/journal":
+            self._send_json(db.get_journal_entries())
         elif self.path == "/api/studies":
             self._send_json(db.get_historical_studies())
         elif self.path == "/api/metrics":

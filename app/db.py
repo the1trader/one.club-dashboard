@@ -130,6 +130,19 @@ class Database:
         cur.execute("SELECT * FROM historical_studies ORDER BY date DESC;")
         return [dict(r) for r in cur.fetchall()]
 
+    def get_journal_entries(self) -> List[Dict[str, Any]]:
+        cur = self.sqlite_conn.cursor()
+        cur.execute("SELECT * FROM journal_entries ORDER BY date DESC, entry_time DESC;")
+        rows = [dict(r) for r in cur.fetchall()]
+        for r in rows:
+            for k in ("pre_trade_thesis", "in_trade_logs", "exit_review"):
+                if r.get(k) and isinstance(r[k], str):
+                    try:
+                        r[k] = json.loads(r[k])
+                    except Exception:
+                        pass
+        return rows
+
     def get_account_metrics(self) -> Optional[Dict[str, Any]]:
         cur = self.sqlite_conn.cursor()
         cur.execute("SELECT * FROM account_metrics WHERE account_id = 'DEMO-PAPER-01';")
