@@ -208,22 +208,22 @@
 #### 🔬 Root Cause Autopsy: Why Did LIVE-004 Hit Stop Loss?
 A side-by-side comparison between the Agent's execution (`LIVE-004` on NQ) and the Trader's manual execution on Pepperstone US500 (ES):
 
-| Execution Attribute | Trader's Manual Execution (Pepperstone US500) | Agent Autonomous Execution (LIVE-004 on NQ) |
-|---|---|---|
-| **Instrument** | **US 500 Index (Pepperstone CFD / ES)** | **NAS100 / US100 (NQ CFD)** |
-| **Market Structure Shift (MSS)** | Clean 1m MSS breakdown below `7,692.0` after `7,708.8` peak | No 1m MSS breakdown; NQ was actively squeezing higher |
-| **Cross-Pair SMT Divergence** | **Confirmed Weaker Asset**: Printed lower highs, rejected first | **Lagging Stronger Asset**: Squeezed buy-side liquidity into `28,684` |
-| **Entry Price & Timing** | `7,694.8` on supply block retest (10:30+ EST) | `28,582.0` (premature market order at 10:30 open) |
-| **Stop Loss Placement** | **`7,712.8`** (Anchored +4.0 pts above structural swing high `7,708.8`) | **`28,612.0`** (Arbitrary fixed `entry + 30.0 pts`) |
-| **Trade Outcome** | **🏆 Large Profit**: Retest peaked at `7,702.0`, plummeted to `7,681.1` (+13.7 pts / +54 ticks) | **❌ Stopped Out**: NQ tapped `28,612.0` at 10:37 EST (-30.0 pts / -$480) |
+| Execution Attribute | Trader's Manual Execution (Pepperstone US500) | Trader's Chart Evidence on NQ (US100 1m & 5m) | Agent Autonomous Execution (LIVE-004 on NQ) |
+|---|---|---|---|
+| **Instrument** | **US 500 Index (Pepperstone CFD / ES)** | **US 100 Cash CFD (Capital.com / NQ)** | **NAS100 / US100 (NQ CFD)** |
+| **Market Structure Shift (MSS)** | Clean 1m MSS breakdown below `7,692.0` after `7,708.8` peak | Clean 1m/5m MSS breakdown below `28,680.0` after `28,830.0` peak | Disregarded MSS level; fired market order without waiting for retest |
+| **High Taken Out?** | **NO.** Peak was `7,708.8`, retest reached `7,702.0` | **NO.** Peak was `28,830.0`, retest reached `28,685.0` | Squeezed past agent's tight stop to `28,612.0` (still well below swing high!) |
+| **Entry Price & Timing** | `7,694.8` on supply block retest (10:30+ EST) | Retest entry zone: `28,680.0` supply block | `28,582.0` (premature market order at 10:30 open) |
+| **Stop Loss Placement** | **`7,712.8`** (Anchored +4.0 pts above structural swing high `7,708.8`) | **`28,835.0`** (Anchored above true structural swing high `28,830.0`) | **`28,612.0`** (Arbitrary fixed `entry + 30.0 pts` — retail micro stop) |
+| **Trade Outcome** | **🏆 Large Profit**: Retest peaked at `7,702.0`, plummeted to `7,681.1` (+13.7 pts / +54 ticks) | **🏆 Massive Expansion**: High never taken out. Melted down -200+ pts to `28,481.1` | **❌ Stopped Out**: NQ tapped `28,612.0` at 10:37 EST (-30.0 pts / -$480) before cascading 200 pts down |
 
 #### 🔑 The 3 Critical Lessons Learned:
-1. **Never Use Arbitrary Fixed Point/Tick Stops:**
-   The agent hardcoded `sl = u100 + 30.0`. In institutional ICT/SMC mechanics, a Stop Loss represents **structural invalidation** ($H_{mss} + \text{buffer}$), the exact level that invalidates the bearish orderflow thesis. Placing a stop based on a fixed number of points is retail blindness that invites liquidity sweeps. The trader anchored their stop above the 10:18 EST swing high of `7,708.8` at `7,712.8`. Price retested into supply, never violated the swing high, and cascaded down.
-2. **Trade the Confirming Weaker Asset in Bearish SMT Divergence:**
-   When Bearish SMT divergence appears at 10:30, the rule is to **short the asset that broke market structure first (ES/US500)**. Never short the index that is still impulsively expanding upward (NQ/US100).
-3. **Dynamic Position Sizing Clamps Structural Stops to 1.0% Risk:**
-   By sizing contracts dynamically via `RiskManager`, the trader can afford whatever structural distance the market requires (whether 18 pts on ES or 60 pts on NQ) while guaranteeing the account dollar risk is strictly capped at 1.0% ($489.80).
+1. **NQ Did NOT Take Out the High Either — The Short Thesis Was 100% Correct:**
+   As verified on the 1m and 5m Capital.com charts, NQ's structural swing high was `28,830.0`. The subsequent breakdown sliced below `28,680.0` (MSS level), and the retest peaked at `28,685.0` forming a textbook Lower High ($LH$). **The high was never touched.** Once the retest rejected, NQ cascaded over **200+ points** straight down into the `28,480` discount delivery zone toward the `28,132.4` session low!
+2. **Arbitrary Micro Stops Kill Winning Institutional Trades:**
+   The agent's hardcoded `entry + 30.0` stop placed the invalidation level at `28,612.0` — squarely in the middle of standard market retest noise. Because the agent did not anchor to the logical structural high (`28,830.0`), it took a -30 pt loss on a trade that delivered +200 pts in the exact anticipated direction.
+3. **Dynamic Position Sizing Enables True Structural Protection:**
+   By sizing contracts dynamically via `RiskManager`, the account dollar risk is locked to 1.0% ($480) whether the structural stop distance is 18 points on ES or 80 points on NQ. True structural stops eliminate premature stoppages completely.
 
 #### 🛠️ Codebase Fixes Applied (2026-11-04):
 - **`risk_manager.py`:** Added multi-instrument dynamic contract sizing supporting both US100 (MNQ/NQ) and US500 (MES/ES), dynamically calculating contracts from structural distance $\Delta_{sl}$ to lock dollar risk to exactly 1.0%.
