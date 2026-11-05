@@ -190,7 +190,7 @@
         </div>
         <div class="flex items-center gap-1.5">
           <span class="text-slate-400 font-sans">Exit Model:</span>
-          <b class="text-purple-400">75% Core (T1 $\ge 2.0R$) + 25% Runner (T2)</b>
+          <b class="text-purple-400">75% Core (T1 ≥ 2.0R) + 25% Runner (T2)</b>
         </div>
         <div class="flex items-center gap-1.5">
           <span class="text-slate-400 font-sans">Hard Boundaries:</span>
@@ -230,8 +230,25 @@
           </div>
         </div>
 
-        <!-- Position Details Grid -->
-        <div id="position-details" class="grid grid-cols-2 md:grid-cols-5 gap-3 text-xs font-mono">
+        <!-- Standby Radar Banner (Shown when FLAT) -->
+        <div id="position-flat-radar" class="p-3.5 rounded-lg bg-slate-950 border border-slate-800/80 flex flex-wrap items-center justify-between text-xs font-mono text-slate-300 gap-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+            <span class="text-slate-400 font-sans">Active Exposure:</span>
+            <b class="text-emerald-400 font-bold">100% Cash · Zero Overnight Risk</b>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400 font-sans">Execution Mandate:</span>
+            <b class="text-white">Structural Stop (H_mss) + FVG Retest Only</b>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400 font-sans">Algorithmic State:</span>
+            <b class="text-cyan-400">Standing By for Next NY Session</b>
+          </div>
+        </div>
+
+        <!-- Position Details Grid (Shown when IN POSITION) -->
+        <div id="position-details" class="hidden grid grid-cols-2 md:grid-cols-5 gap-3 text-xs font-mono">
           <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80">
             <div class="text-slate-500 uppercase text-[11px]">Position</div>
             <div id="pos-side" class="text-sm font-bold text-slate-400 mt-0.5">FLAT</div>
@@ -385,6 +402,50 @@
           </div>
         </div>
 
+        <!-- Realized Equity Curve Ribbon (TradeZella Institutional Standard) -->
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-bold">📈 Realized Account Equity Trajectory</span>
+              <span class="text-slate-500">· $50,000 Base</span>
+            </div>
+            <div class="flex items-center gap-3 text-slate-400">
+              <span>Base: <b class="text-slate-200">$50,000.00</b></span>
+              <span>Drawdown Low: <b class="text-red-400">$48,580.00</b></span>
+              <span>Current Balance: <b id="equity-current-val" class="text-emerald-400">$49,485.00</b></span>
+            </div>
+          </div>
+          <div class="w-full h-24 pt-1">
+            <svg viewBox="0 0 500 80" class="w-full h-full overflow-visible">
+              <defs>
+                <linearGradient id="equityGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="20" x2="500" y2="20" stroke="#334155" stroke-dasharray="3,3" stroke-width="1"/>
+              <path d="M 15 20 L 95 62 L 175 80 L 255 78 L 335 76 L 415 82 L 485 36 L 485 80 L 15 80 Z" fill="url(#equityGrad)"/>
+              <path d="M 15 20 L 95 62 L 175 80 L 255 78 L 335 76 L 415 82 L 485 36" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="15" cy="20" r="3" fill="#94a3b8"/>
+              <circle cx="95" cy="62" r="3" fill="#ef4444"/>
+              <circle cx="175" cy="80" r="3" fill="#ef4444"/>
+              <circle cx="255" cy="78" r="3" fill="#10b981"/>
+              <circle cx="335" cy="76" r="3" fill="#10b981"/>
+              <circle cx="415" cy="82" r="3" fill="#ef4444"/>
+              <circle cx="485" cy="36" r="4.5" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 pt-1 border-t border-slate-900">
+            <span>Base ($50.0k)</span>
+            <span>LIVE-001 (-$1k)</span>
+            <span>LIVE-002 (-$1k)</span>
+            <span>LIVE-003 (+$20)</span>
+            <span>LIVE-004 (+$20)</span>
+            <span>LIVE-005 (-$400)</span>
+            <span class="text-emerald-400 font-bold">LIVE-006 (+$905 · Current: $49,485)</span>
+          </div>
+        </div>
+
         <!-- Journal Filter & Search Bar -->
         <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs">
           <!-- Status Filters -->
@@ -461,7 +522,7 @@
             <div class="text-emerald-400 font-bold text-sm">09:30 - 10:30</div>
             <div class="text-white font-medium text-[11px] font-sans">Cash Open Flow</div>
             <div class="text-[10px] text-emerald-400 font-bold">ACTIVE EXECUTION</div>
-            <p class="text-[10px] text-slate-400 font-sans mt-1">1m MSS displacement + FVG tap. Stops strictly $\ge 25$ pts.</p>
+            <p class="text-[10px] text-slate-400 font-sans mt-1">1m MSS displacement + FVG tap. Stops strictly ≥ 25 pts.</p>
           </div>
 
           <!-- Phase 4 -->
@@ -530,7 +591,7 @@
             <h3 class="text-sm font-bold text-white uppercase tracking-wide">Pillar 3: 2-Tier Exit Model (75/25)</h3>
           </div>
           <p class="text-slate-300 leading-relaxed font-sans">
-            <b>Core Position (75%):</b> Banked at Target 1 ($\ge 2.0R$ or opposing liquidity sweep). Once Target 1 is filled, the stop loss on the remaining position is immediately trailed to <b>Breakeven + 1 tick</b>.<br>
+            <b>Core Position (75%):</b> Banked at Target 1 (≥ 2.0R or opposing liquidity sweep). Once Target 1 is filled, the stop loss on the remaining position is immediately trailed to <b>Breakeven + 1 tick</b>.<br>
             <b>Runner Position (25%):</b> Trailed to Higher Timeframe liquidity targets (e.g. 28,132.4).
           </p>
         </div>
@@ -839,17 +900,40 @@
           const m = pa.metrics;
           document.getElementById("paper-win-rate").innerText = `${m.win_rate.toFixed(1)}%`;
           document.getElementById("paper-win-loss").innerText = `${m.wins} Wins / ${m.losses} Losses (${m.total_trades} Real)`;
+          
+          // Synchronize Journal Summary Stats
+          const jTotalEl = document.getElementById("journal-stat-total");
+          if (jTotalEl) jTotalEl.innerText = `${m.total_trades} Real Trades`;
+          const jSplitEl = document.getElementById("journal-stat-split");
+          if (jSplitEl) jSplitEl.innerText = `${m.wins} Wins · ${m.losses} Losses`;
         }
 
-        // Active Position or Flat
+        // Synchronize Journal Net Cumulative Result
+        const jNetEl = document.getElementById("journal-stat-net");
+        if (jNetEl) {
+          jNetEl.className = net >= 0 ? "text-lg font-bold text-emerald-400 mt-0.5" : "text-lg font-bold text-red-400 mt-0.5";
+          jNetEl.innerText = formatPnL(net, net / 20.0, 30.0, 1);
+        }
+        const eqValEl = document.getElementById("equity-current-val");
+        if (eqValEl) {
+          eqValEl.innerText = "$" + bal.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        }
+
+        // Active Position or Flat Radar Toggle
+        const flatRadar = document.getElementById("position-flat-radar");
+        const posDetails = document.getElementById("position-details");
         if (pa.active_position) {
           activeTrade = pa.active_position;
           document.getElementById("btn-close-trade").classList.remove("hidden");
           document.getElementById("execution-progress-container").classList.remove("hidden");
+          if (flatRadar) flatRadar.classList.add("hidden");
+          if (posDetails) posDetails.classList.remove("hidden");
         } else {
           activeTrade = null;
           document.getElementById("btn-close-trade").classList.add("hidden");
           document.getElementById("execution-progress-container").classList.add("hidden");
+          if (flatRadar) flatRadar.classList.remove("hidden");
+          if (posDetails) posDetails.classList.add("hidden");
           document.getElementById("pos-status-badge").innerText = "FLAT (100% Cash · Waiting for A+ setup)";
           document.getElementById("pos-status-badge").className = "text-xs font-bold text-emerald-400/90";
           document.getElementById("pos-side").innerText = "FLAT (NO POSITION)";
@@ -1051,7 +1135,20 @@
 
         const thesis = j.pre_trade_thesis || {};
         const thesisKeys = Object.keys(thesis);
-        const logs = (j.in_trade_logs || []).slice(-5);
+        
+        // Filter logs to key institutional execution milestones
+        const allLogs = j.in_trade_logs || [];
+        const keyLogs = allLogs.filter((l, idx) => {
+          const n = l.note || "";
+          return idx === 0 || 
+                 idx === allLogs.length - 1 || 
+                 n.includes("Executed") || 
+                 n.includes("TARGET") || 
+                 n.includes("Banked") || 
+                 n.includes("Breakeven") || 
+                 n.includes("Exit");
+        });
+        const logs = keyLogs.length > 0 ? keyLogs : allLogs.slice(-4);
 
         return `
         <div class="p-4 rounded-xl bg-slate-900/90 border ${isFlight ? 'border-blue-500/50 shadow-lg shadow-blue-500/10' : (isWin ? 'border-emerald-500/30' : 'border-slate-800')} space-y-3 transition">
