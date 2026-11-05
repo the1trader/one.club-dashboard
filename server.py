@@ -41,9 +41,21 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(content.encode("utf-8"))
             else:
                 self._send_json({"error": "No data stream active"})
-        elif self.path == "/":
-            self.path = "/index.html"
-            super().do_GET()
+        elif self.path in ("/", "/index.html"):
+            index_path = os.path.join(BASE_DIR, "index.html")
+            if os.path.exists(index_path):
+                with open(index_path, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+                self.send_header("Pragma", "no-cache")
+                self.send_header("Expires", "0")
+                self.send_header("Content-Length", str(len(content)))
+                self.end_headers()
+                self.wfile.write(content)
+            else:
+                super().do_GET()
         else:
             super().do_GET()
 
