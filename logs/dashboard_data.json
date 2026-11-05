@@ -1,19 +1,19 @@
 {
-  "ny_time": "2026-11-04 13:07:43 EST",
-  "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+  "ny_time": "2026-11-05 08:14:54 EST",
+  "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
   "prices": {
-    "US100": 28582.0,
-    "US500": 7695.2
+    "US100": 28201.2,
+    "US500": 7701.5
   },
   "levels": {
-    "h_730_u100": null,
-    "l_730_u100": null,
-    "h_730_u500": null,
-    "l_730_u500": null,
+    "h_730_u100": 28216.3,
+    "l_730_u100": 28171.3,
+    "h_730_u500": 7701.5,
+    "l_730_u500": 7682.6,
     "h_830_u100": null,
     "l_830_u100": null,
     "h_session_u100": 28582.0,
-    "h_session_u500": 7695.2
+    "h_session_u500": 7701.5
   },
   "sweeps": {
     "swept_730_low": false,
@@ -22,8 +22,8 @@
   },
   "agent_signal": {
     "side": "FLAT",
-    "bias": "LUNCH_LOCKOUT",
-    "reason": "11:30 AM London Close & 12:00-13:00 NY Lunch Dead Zone. 100% Cash Standby. No new entries."
+    "bias": "WAIT",
+    "reason": "Establishing baseline range across US100 and US500."
   },
   "learning": {
     "active_rule": {
@@ -282,69 +282,132 @@
   },
   "latest_decisions": [
     {
-      "timestamp": "2026-11-04T13:03:02.248687-05:00",
-      "ny_time": "13:03:02 EST",
-      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "timestamp": "2026-11-05T08:07:02.143912-05:00",
+      "ny_time": "08:07:02 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 28201.2,
+        "US500": 7701.5
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7695.2).",
-      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
-      "bias": "LUNCH_LOCKOUT",
-      "extra": {}
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
     },
     {
-      "timestamp": "2026-11-04T13:04:00.678503-05:00",
-      "ny_time": "13:04:00 EST",
-      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "timestamp": "2026-11-05T08:08:02.048537-05:00",
+      "ny_time": "08:08:02 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 28201.2,
+        "US500": 7701.5
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7695.2).",
-      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
-      "bias": "LUNCH_LOCKOUT",
-      "extra": {}
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
     },
     {
-      "timestamp": "2026-11-04T13:05:01.495629-05:00",
-      "ny_time": "13:05:01 EST",
-      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "timestamp": "2026-11-05T08:09:02.064246-05:00",
+      "ny_time": "08:09:02 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 28201.2,
+        "US500": 7701.5
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7695.2).",
-      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
-      "bias": "LUNCH_LOCKOUT",
-      "extra": {}
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
     },
     {
-      "timestamp": "2026-11-04T13:06:02.328118-05:00",
-      "ny_time": "13:06:02 EST",
-      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "timestamp": "2026-11-05T08:10:02.049888-05:00",
+      "ny_time": "08:10:02 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 28201.2,
+        "US500": 7701.5
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7695.2).",
-      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
-      "bias": "LUNCH_LOCKOUT",
-      "extra": {}
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
     },
     {
-      "timestamp": "2026-11-04T13:07:01.143456-05:00",
-      "ny_time": "13:07:01 EST",
-      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "timestamp": "2026-11-05T08:11:02.107099-05:00",
+      "ny_time": "08:11:02 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 28201.2,
+        "US500": 7701.5
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7695.2).",
-      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
-      "bias": "LUNCH_LOCKOUT",
-      "extra": {}
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
+    },
+    {
+      "timestamp": "2026-11-05T08:12:02.067739-05:00",
+      "ny_time": "08:12:02 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
+      "prices": {
+        "US100": 28201.2,
+        "US500": 7701.5
+      },
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
+    },
+    {
+      "timestamp": "2026-11-05T08:13:01.902071-05:00",
+      "ny_time": "08:13:01 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
+      "prices": {
+        "US100": 28201.2,
+        "US500": 7701.5
+      },
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
+    },
+    {
+      "timestamp": "2026-11-05T08:14:01.984291-05:00",
+      "ny_time": "08:14:01 EST",
+      "phase": "Window 1: 07:30 - 08:30 Range Blueprint",
+      "prices": {
+        "US100": 28201.2,
+        "US500": 7701.5
+      },
+      "observation": "Pre-market blueprint established. US100=[28171.3 - 28216.3] (45.0 pts), US500=[7682.6 - 7701.5] (18.9 pts).",
+      "decision": "WAIT \u2014 Allowing range baseline to form before 08:30 news manipulation.",
+      "bias": "NEUTRAL",
+      "extra": {
+        "US100_Range": "45.0 pts",
+        "US500_Range": "18.9 pts"
+      }
     }
   ],
   "journal": [
