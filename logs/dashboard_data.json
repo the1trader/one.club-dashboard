@@ -1,29 +1,29 @@
 {
-  "ny_time": "2026-11-06 23:13:32 EST",
-  "phase": "Phase 7: Out of Session / Market Settlement",
+  "ny_time": "2026-11-09 12:31:18 EST",
+  "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
   "prices": {
-    "US100": 28582.0,
-    "US500": 7695.2
+    "US100": 27860.5,
+    "US500": 7544.7
   },
   "levels": {
-    "h_730_u100": null,
-    "l_730_u100": null,
-    "h_730_u500": null,
-    "l_730_u500": null,
-    "h_830_u100": null,
-    "l_830_u100": null,
+    "h_730_u100": 28582.0,
+    "l_730_u100": 27135.9,
+    "h_730_u500": 7695.2,
+    "l_730_u500": 7429.3,
+    "h_830_u100": 28582.0,
+    "l_830_u100": 27177.6,
     "h_session_u100": 28582.0,
     "h_session_u500": 7695.2
   },
   "sweeps": {
     "swept_730_low": false,
     "swept_730_high": false,
-    "scenario": "EVALUATING"
+    "scenario": "TYPE_B_COMPRESSION"
   },
   "agent_signal": {
     "side": "FLAT",
-    "bias": "SESSION_CLOSED",
-    "reason": "Outside active NY operating killzones."
+    "bias": "LUNCH_LOCKOUT",
+    "reason": "11:30 AM London Close & 12:00-13:00 NY Lunch Dead Zone. 100% Cash Standby. No new entries."
   },
   "learning": {
     "active_rule": {
@@ -120,23 +120,23 @@
     ]
   },
   "paper_account": {
-    "balance": 48346.0,
-    "equity": 48346.0,
+    "balance": 48831.799999999996,
+    "equity": 48831.799999999996,
     "risk_rule": {
       "risk_per_trade_pct": "1.0%",
-      "dollar_risk": "$483.46",
+      "dollar_risk": "$488.32",
       "min_rr_gate": "1.8R",
       "trailing_be": "+1.5R",
       "sizing": "Dynamic by structural stop distance"
     },
     "active_position": null,
     "metrics": {
-      "total_trades": 9,
-      "wins": 3,
+      "total_trades": 10,
+      "wins": 4,
       "losses": 6,
-      "win_rate": 33.3,
-      "net_pnl": -1654.0,
-      "profit_factor": 0.37
+      "win_rate": 40.0,
+      "net_pnl": -1168.2,
+      "profit_factor": 0.55
     },
     "trade_history": [
       {
@@ -358,38 +358,188 @@
         "pnl": -39.0,
         "status": "LOSS",
         "reason": "11:30 AM London Close Mandatory Exit (No Lunch Exposure)"
+      },
+      {
+        "id": "LIVE-010",
+        "date": "2026-11-09",
+        "setup": "09:35 Judas Reversal Long",
+        "side": "LONG",
+        "instrument": "MNQ_MICRO",
+        "underlying_pair": "US100",
+        "contracts": 1,
+        "entry_time": "09:35:02 EST",
+        "exit_time": "09:55:02 EST",
+        "entry_price": 27357.2,
+        "exit_price": 27600.1,
+        "stop_loss": 27130.9,
+        "take_profit_1": 28582.0,
+        "take_profit_2": 29806.8,
+        "sl_points": 226.3,
+        "tp_points": 1224.8,
+        "rr_ratio": 5.41,
+        "dollar_risk": 452.6,
+        "risk_pct": 0.94,
+        "t1_hit": false,
+        "partial_pnl": 0.0,
+        "points": 242.9,
+        "pnl": 485.8,
+        "status": "WIN",
+        "reason": "10:00 Macro Mandatory Take-Profit (Do Not Hold AM Longs)"
       }
     ]
   },
   "latest_decisions": [
     {
-      "timestamp": "2026-11-06T23:12:14.707576-05:00",
-      "ny_time": "23:12:14 EST",
-      "phase": "Phase 7: Out of Session / Market Settlement",
+      "timestamp": "2026-11-09T12:24:01.330314-05:00",
+      "ny_time": "12:24:01 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 27820.1,
+        "US500": 7532.6
       },
-      "observation": "Outside NY operating session (US100=28582.0, US500=7695.2).",
-      "decision": "STANDBY \u2014 Terminal Flat. Session complete.",
-      "bias": "SESSION_CLOSED",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27820.1, US500=7532.6).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-06T23:13:00.394172-05:00",
-      "ny_time": "23:13:00 EST",
-      "phase": "Phase 7: Out of Session / Market Settlement",
+      "timestamp": "2026-11-09T12:25:02.010224-05:00",
+      "ny_time": "12:25:02 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 28582.0,
-        "US500": 7695.2
+        "US100": 27820.1,
+        "US500": 7532.6
       },
-      "observation": "Outside NY operating session (US100=28582.0, US500=7695.2).",
-      "decision": "STANDBY \u2014 Terminal Flat. Session complete.",
-      "bias": "SESSION_CLOSED",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27820.1, US500=7532.6).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
+      "extra": {}
+    },
+    {
+      "timestamp": "2026-11-09T12:26:01.109975-05:00",
+      "ny_time": "12:26:01 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "prices": {
+        "US100": 27820.1,
+        "US500": 7544.7
+      },
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27820.1, US500=7544.7).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
+      "extra": {}
+    },
+    {
+      "timestamp": "2026-11-09T12:27:00.228041-05:00",
+      "ny_time": "12:27:00 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "prices": {
+        "US100": 27850.9,
+        "US500": 7544.7
+      },
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27850.9, US500=7544.7).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
+      "extra": {}
+    },
+    {
+      "timestamp": "2026-11-09T12:28:00.625316-05:00",
+      "ny_time": "12:28:00 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "prices": {
+        "US100": 27854.9,
+        "US500": 7544.7
+      },
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27854.9, US500=7544.7).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
+      "extra": {}
+    },
+    {
+      "timestamp": "2026-11-09T12:29:00.285920-05:00",
+      "ny_time": "12:29:00 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "prices": {
+        "US100": 27862.7,
+        "US500": 7544.7
+      },
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27862.7, US500=7544.7).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
+      "extra": {}
+    },
+    {
+      "timestamp": "2026-11-09T12:30:01.984480-05:00",
+      "ny_time": "12:30:01 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "prices": {
+        "US100": 27861.3,
+        "US500": 7544.7
+      },
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27861.3, US500=7544.7).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
+      "extra": {}
+    },
+    {
+      "timestamp": "2026-11-09T12:31:00.564020-05:00",
+      "ny_time": "12:31:00 EST",
+      "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
+      "prices": {
+        "US100": 27863.8,
+        "US500": 7544.7
+      },
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27863.8, US500=7544.7).",
+      "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
+      "bias": "LUNCH_LOCKOUT",
       "extra": {}
     }
   ],
   "journal": [
+    {
+      "trade_id": "LIVE-010",
+      "date": "2026-11-09",
+      "entry_time": "09:35:02 EST",
+      "exit_time": "09:55:02 EST",
+      "setup": "09:35 Judas Reversal Long",
+      "instrument": "US100 (NQ)",
+      "side": "LONG",
+      "contracts": 1,
+      "entry_price": 27357.2,
+      "stop_loss": 27130.9,
+      "take_profit": 28582.0,
+      "dollar_risk": 452.6,
+      "risk_pct": 1.0,
+      "pre_trade_thesis": {
+        "setup": "09:35 Judas Reversal Long",
+        "instrument": "MNQ_MICRO",
+        "underlying_pair": "US100",
+        "structural_sl": "27130.9 (226.3 pts risk anchored to structural swing)",
+        "target_t1": "28582.0 (75% Core exit, 5.41R)",
+        "target_t2": "29806.8 (25% Runner exit, HTF Draw on Liquidity)",
+        "risk_plan": "Dynamic 1.0% risk ($452.60) sized for 1x MNQ_MICRO (Core: 1x, Runner: 0x).",
+        "execution_trigger": "Structural confirmation via ICT Time & Price (Liquidity purge + 1m MSS/FVG retest)."
+      },
+      "in_trade_logs": [
+        {
+          "time": "09:35:02 EST",
+          "price": 27357.2,
+          "pts": "0.0",
+          "note": "Executed LONG order. Stop Loss set structurally at 27130.9, TP at 28582.0."
+        }
+      ],
+      "exit_review": {
+        "exit_price": 27600.1,
+        "points": 242.9,
+        "pnl": 4858.0,
+        "rr_achieved": 1.07,
+        "status": "WIN",
+        "grade": "A",
+        "reason": "10:00 Macro Mandatory Take-Profit (Do Not Hold AM Longs)",
+        "what_went_well": "Disciplined trade management. Banked Target 1 and protected runner at breakeven (+$485.80), eliminating downside risk.",
+        "what_to_improve": "Review lower timeframe order flow during the retracement to see if the exit was optimal.",
+        "key_lesson": "Rule #1 is always protect capital. A scratch or small profit preserves mental clarity for the next A+ setup."
+      }
+    },
     {
       "trade_id": "LIVE-009",
       "date": "2026-11-06",
