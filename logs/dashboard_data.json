@@ -1,24 +1,24 @@
 {
-  "ny_time": "2026-11-09 12:31:18 EST",
+  "ny_time": "2026-11-10 11:45:01 EST",
   "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
   "prices": {
-    "US100": 27860.5,
-    "US500": 7544.7
+    "US100": 28582.0,
+    "US500": 7496.6
   },
   "levels": {
-    "h_730_u100": 28582.0,
-    "l_730_u100": 27135.9,
-    "h_730_u500": 7695.2,
-    "l_730_u500": 7429.3,
-    "h_830_u100": 28582.0,
-    "l_830_u100": 27177.6,
+    "h_730_u100": null,
+    "l_730_u100": null,
+    "h_730_u500": null,
+    "l_730_u500": null,
+    "h_830_u100": null,
+    "l_830_u100": null,
     "h_session_u100": 28582.0,
-    "h_session_u500": 7695.2
+    "h_session_u500": 7501.8
   },
   "sweeps": {
     "swept_730_low": false,
     "swept_730_high": false,
-    "scenario": "TYPE_B_COMPRESSION"
+    "scenario": "EVALUATING"
   },
   "agent_signal": {
     "side": "FLAT",
@@ -120,8 +120,8 @@
     ]
   },
   "paper_account": {
-    "balance": 48831.799999999996,
-    "equity": 48831.799999999996,
+    "balance": 48831.8,
+    "equity": 48831.8,
     "risk_rule": {
       "risk_per_trade_pct": "1.0%",
       "dollar_risk": "$488.32",
@@ -390,105 +390,105 @@
   },
   "latest_decisions": [
     {
-      "timestamp": "2026-11-09T12:24:01.330314-05:00",
-      "ny_time": "12:24:01 EST",
+      "timestamp": "2026-11-10T11:38:01.995775-05:00",
+      "ny_time": "11:38:01 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27820.1,
-        "US500": 7532.6
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27820.1, US500=7532.6).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:25:02.010224-05:00",
-      "ny_time": "12:25:02 EST",
+      "timestamp": "2026-11-10T11:39:00.311867-05:00",
+      "ny_time": "11:39:00 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27820.1,
-        "US500": 7532.6
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27820.1, US500=7532.6).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:26:01.109975-05:00",
-      "ny_time": "12:26:01 EST",
+      "timestamp": "2026-11-10T11:40:01.044955-05:00",
+      "ny_time": "11:40:01 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27820.1,
-        "US500": 7544.7
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27820.1, US500=7544.7).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:27:00.228041-05:00",
-      "ny_time": "12:27:00 EST",
+      "timestamp": "2026-11-10T11:41:01.678075-05:00",
+      "ny_time": "11:41:01 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27850.9,
-        "US500": 7544.7
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27850.9, US500=7544.7).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:28:00.625316-05:00",
-      "ny_time": "12:28:00 EST",
+      "timestamp": "2026-11-10T11:42:02.210583-05:00",
+      "ny_time": "11:42:02 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27854.9,
-        "US500": 7544.7
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27854.9, US500=7544.7).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:29:00.285920-05:00",
-      "ny_time": "12:29:00 EST",
+      "timestamp": "2026-11-10T11:43:00.425389-05:00",
+      "ny_time": "11:43:00 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27862.7,
-        "US500": 7544.7
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27862.7, US500=7544.7).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:30:01.984480-05:00",
-      "ny_time": "12:30:01 EST",
+      "timestamp": "2026-11-10T11:44:01.141037-05:00",
+      "ny_time": "11:44:01 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27861.3,
-        "US500": 7544.7
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27861.3, US500=7544.7).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
     },
     {
-      "timestamp": "2026-11-09T12:31:00.564020-05:00",
-      "ny_time": "12:31:00 EST",
+      "timestamp": "2026-11-10T11:45:01.357282-05:00",
+      "ny_time": "11:45:01 EST",
       "phase": "Phase 6: 11:30 - 13:15 London Close & Lunch Dead Zone",
       "prices": {
-        "US100": 27863.8,
-        "US500": 7544.7
+        "US100": 28582.0,
+        "US500": 7496.6
       },
-      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=27863.8, US500=7544.7).",
+      "observation": "Market in 11:30 London Close & NY Lunch Dead Zone (US100=28582.0, US500=7496.6).",
       "decision": "LOCKOUT STANDBY: Low-volume algorithmic chop. Zero trades permitted.",
       "bias": "LUNCH_LOCKOUT",
       "extra": {}
